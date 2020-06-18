@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="#" />
+  <meta name="keywords" content="#" />
+  <meta name="author" content="#" />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="#" type="image/*" />
+  <link rel="canonical" href="#" />
+
+  <!-- social media metatags -->
+  <meta property="og:title" content="#" />
+  <meta property="og:description" content="#" />
+  <meta property="og:locale" content="#" />
+  <meta property="og:url" content="#" />
+  <meta property="og:site_name" content="#" />
+  <meta property="og:type" content="#" />
+  <meta property="og:image" content="#" />
+  <meta property="og:image:type" content="image/*" />
+  <meta property="og:image:width" content="#" />
+  <meta property="og:image:height" content="#" />
+
+  <!-- metatags for twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="#" />
+  <meta name="twitter:site" content="" />
+  <meta name="twitter:title" content="#" />
+  <meta name="twitter:description" content="#" />
+
+  <!-- CSS imports -->
+  <link rel="stylesheet" href="~/css/main.css" rel="stylesheet"/>
+
+  <title>Dashboard Gestão</title>
+</head>
+
+<body>
+  <div class="d-flex" id="wrapper">
+    <div id="sidebar-wrapper">
+      <div class="sidebar-heading">Dashboard Gestão</div>
+      <div class="list-group list-group-flush">
+        <a asp-controller="App" asp-action="Index" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Home</a>
+        <!-- 
+        <a href="tables.html" class="list-group-item list-group-item-action"><i class="fa fa-table" aria-hidden="true"></i>Tables</a>
+        <a href="buttons.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Buttons</a>
+        <a href="icons.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Icons</a>
+        <a href="typography.html" class="list-group-item list-group-item-action"><i class="fa fa-text-width" aria-hidden="true"></i>Typography</a>
+        <a href="modals.html" class="list-group-item list-group-item-action"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>Modals</a>
+        <a href="forms.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Forms</a>
+        <a href="alerts.html" class="list-group-item list-group-item-action"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>Alerts</a>
+        <a href="breadcrumb.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Breadcrumb</a>-->
+      </div>
+    </div>
+     @RenderBody()
+  </div>
+
+
+  <!-- javascrips imports -->
+  <script src="~/node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="~/js/min/popper.min.js"></script>
+  <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="~/js/template-functions.js"></script>
+
+</body>
+
+</html>
