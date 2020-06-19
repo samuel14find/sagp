@@ -10,5 +10,6 @@ namespace gestao.Data
 
         }
         public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<FichaFuncional> Fichas { get; set; }
     }
 }
