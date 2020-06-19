@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using gestao.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace gestao.Data
@@ -56,6 +57,30 @@ namespace gestao.Data
         public Funcionario GetFuncionarioPorMatricula(string matricula)
         {
             return _context.Funcionarios.Where(f => f.matricula == matricula).FirstOrDefault();
+        }
+
+        public IEnumerable<FichaFuncional> GetFichas()
+        {
+           return _context.Fichas.Include(f => f.funcionario).ToList();
+        }
+
+        public Funcionario GetFuncionarioPorId(int idFunc)
+        {
+            return _context.Funcionarios.Find(idFunc);
+        }
+
+        public FichaFuncional GetFichaPorId(int id)
+        {
+           return _context.Fichas
+           .Include(f => f.funcionario)
+           .Where(f => f.fichafuncId == id).FirstOrDefault();
+        }
+
+        //  Comentario:
+        // Ver comentários que adicionar na interface 
+        public void AdicionarEntidade(object model)
+        {
+           _context.Add(model);
         }
     }
 }
