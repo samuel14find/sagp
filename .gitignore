@@ -280,6 +280,7 @@ __pycache__/
 *.code-workspace
 .vscode/*
 
+
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
@@ -287,3 +288,4 @@ __pycache__/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,aspnetcore
 # Ignorar arquivos instalados no node_modules
 node_modules/*
+Data/Migrations/*
