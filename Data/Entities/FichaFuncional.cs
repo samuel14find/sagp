@@ -14,7 +14,7 @@ namespace gestao.Data.Entities
         public int fichafuncId { get; set; }
         public string titulo { get; set; }
         public string descricao { get; set; }
-       public DateTimeOffset? dataficha { get; set; }
+       public DateTimeOffset dataficha { get; set; }
 
        [ForeignKey("FuncionarioId")]
        public Funcionario funcionario {get; set;} // Propriedade de navegação de referência
