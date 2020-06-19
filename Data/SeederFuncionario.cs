@@ -25,8 +25,8 @@ namespace gestao.Data
     public class SeederFuncionario
     {
         private readonly AppGestaoContext _context;
-        private readonly IHostingEnvironment _hosting;
-        public SeederFuncionario(AppGestaoContext context, IHostingEnvironment hosting)
+        private readonly IWebHostEnvironment _hosting;
+        public SeederFuncionario(AppGestaoContext context, IWebHostEnvironment hosting)
         {
             this._hosting = hosting;
             this._context = context;
