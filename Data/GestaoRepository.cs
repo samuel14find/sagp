@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using gestao.Data.Entities;
 using Microsoft.Extensions.Logging;
 
@@ -32,6 +34,17 @@ namespace gestao.Data
             {
                 _logger.LogError($"Falha em adicionar funcionario. {ex}");
                 return null;
+            }
+        }
+        public IEnumerable<Funcionario> GetFuncionarios()
+        {
+            try
+            {
+             _logger.LogInformation("Bucando todos os funcionarios");
+             return _context.Funcionarios.OrderBy(f => f.nome).ToList();
+            } catch (Exception ex)
+            {
+                _logger.LogError($"Falha em obter todos os funcionarios: {ex}")
             }
         }
         public int Commit()

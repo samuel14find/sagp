@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using gestao.Data.Entities;
 
 namespace gestao.Data
@@ -6,5 +7,6 @@ namespace gestao.Data
     {
         Funcionario Add(Funcionario novoFuncionario);
          int Commit();
+         IEnumerable<Funcionario> GetFuncionarios();
     }
 }
