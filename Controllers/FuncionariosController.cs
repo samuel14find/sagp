@@ -57,5 +57,20 @@ namespace gestao.Controllers
                 return BadRequest("Falha em obter os funcionarios");
             }
         }
+        [HttpGet("{matricula}")]
+        public IActionResult Get(string matricula)
+        {
+            try 
+            {
+                var funcionario = _repository.GetFuncionarioPorMatricula(matricula);
+                if(funcionario != null) return Ok(funcionario);
+                else return NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Falha em obter o funcionarios: {ex}");
+                return BadRequest("Falha em obter o funcionarios");
+            }
+        }
     }
 }
