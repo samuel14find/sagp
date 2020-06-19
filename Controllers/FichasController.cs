@@ -1,6 +1,7 @@
 using System;
 using gestao.Data;
 using gestao.Data.Entities;
+using gestao.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -55,20 +56,54 @@ namespace gestao.Controllers
         // Created(). Assim estamos em sintonia com o jeito de trabalhar do Http
         // Com Post, se estamos criando um objeto, o correto é retornar esse Created.
         // O status de created é 201. 
+        // Observe aqui que justamente por estar usando o ViewModel vou usar o ModelState 
+        // para validar as coisas. 
         [HttpPost]
-        public IActionResult Post([FromBody]FichaFuncional model)
+        public IActionResult Post([FromBody]FichaFuncionalViewModel model)
         {
-            //Adicionar no banco
+        
             try
             {
-                _repository.AdicionarEntidade(model);
+                if(ModelState.IsValid)
+                {
+                    var novaFicha = new FichaFuncional()
+                    {
+                        fichafuncId = model.fichaid,
+                        titulo = model.Titulo,
+                        descricao = model.Descricao,
+                        dataficha = model.DataFicha
+                    };
+                    //  Comentários:
+                    // Aqui vou fazer uma pequena validação. Verifica se 
+                    // não vou passado data alguma. Isso porque não passei 
+                    // required na data lá no FichaFuncionalViewModel.
+
+                    if( novaFicha.dataficha == DateTimeOffset.MinValue)
+                    {
+                        novaFicha.dataficha = DateTimeOffset.UtcNow;
+                    };
+                _repository.AdicionarEntidade(novaFicha);
                 _repository.Commit();
-                
+                //  Comentários:
+                // Como eu convertir o mode para novaFicha, agora faço o trabalho 
+                // o contrário
+                var vm = new FichaFuncionalViewModel()
+                {
+                    fichaid = novaFicha.fichafuncId,
+                    Titulo = novaFicha.titulo,
+                    Descricao = novaFicha.descricao,
+                    DataFicha = novaFicha.dataficha
+                };
+
                 //  Comentários:
                 // Nesse ponto já tenho o id gerado
                 //  pelo banco e se eu precisar acessar
                 // outros campos eu passo model de volta. 
-                return Created($"/api/fichas/{model.fichafuncId}", model);
+                return Created($"/api/fichas/{vm.fichaid}", model);
+                } else
+                {
+                    return BadRequest(ModelState);
+                }
             }
             catch (Exception ex)
             {
