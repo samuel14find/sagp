@@ -53,5 +53,9 @@ namespace gestao.Data
             return _context.SaveChanges();
         }
 
+        public Funcionario GetFuncionarioPorMatricula(string matricula)
+        {
+            return _context.Funcionarios.Where(f => f.matricula == matricula).FirstOrDefault();
+        }
     }
 }

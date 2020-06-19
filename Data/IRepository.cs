@@ -8,5 +8,6 @@ namespace gestao.Data
         Funcionario Add(Funcionario novoFuncionario);
          int Commit();
          IEnumerable<Funcionario> GetFuncionarios();
+        Funcionario GetFuncionarioPorMatricula(string matricula);
     }
 }
