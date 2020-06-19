@@ -44,7 +44,8 @@ namespace gestao.Data
              return _context.Funcionarios.OrderBy(f => f.nome).ToList();
             } catch (Exception ex)
             {
-                _logger.LogError($"Falha em obter todos os funcionarios: {ex}")
+                _logger.LogError($"Falha em obter todos os funcionarios: {ex}");
+                return null;
             }
         }
         public int Commit()
