@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -46,6 +47,9 @@ namespace gestao.Data.Entities
         
         [DataType(DataType.DateTime)]
         public DateTimeOffset? dataexercicio { get; set; }
+
+
+        public ICollection<FichaFuncional> Fichas {get; set;} // Propriedade navegacional de coleção
     }
     
 }
