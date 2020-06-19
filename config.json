@@ -1,0 +1,11 @@
+{
+    "ConnectionStrings": {
+        "StringConexaoBancoGestao":"Server=localhost\\SQLEXPRESS;Database=gestao;Trusted_Connection=True; MultipleActiveResultSets=true"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information",
+            "Microsoft": "Warning"
+        }
+    }
+}
