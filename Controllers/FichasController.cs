@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using AutoMapper;
 using gestao.Data;
 using gestao.Data.Entities;
 using gestao.ViewModels;
@@ -12,11 +14,13 @@ namespace gestao.Controllers
     {
         private readonly IRepository _repository;
         private readonly ILogger<FichasController> _logger;
+        private readonly IMapper _mapper;
 
-        public FichasController(IRepository repository, ILogger<FichasController> logger)
+        public FichasController(IRepository repository, ILogger<FichasController> logger, IMapper mapper)
         {
             this._repository = repository;
             this._logger = logger;
+            this._mapper = mapper;
         }
 
         [HttpGet]
@@ -24,7 +28,10 @@ namespace gestao.Controllers
         {
             try
             {
-                return Ok(_repository.GetFichas());
+                // Comentarios:
+                // Ao usar o Mapper, se for mapear collections, a dica é mapear 
+                // de collection para collection, de list para list etc. 
+                return Ok(_mapper.Map<IEnumerable<FichaFuncional>, IEnumerable<FichaFuncionalViewModel>>(_repository.GetFichas()));
             }
             catch (Exception ex)
             {
@@ -39,7 +46,10 @@ namespace gestao.Controllers
              try
             {
                 var ficha = _repository.GetFichaPorId(id);
-                if(ficha != null) return Ok(ficha);
+                //  Comentário:
+                // Isso aqui funciona assim: Pega a ficha que estão passando e retorna uma versão 
+                // mapeada ao FichaFuncionalViewModel visto que sempre vamos querer retornar uma view model
+                if(ficha != null) return Ok(_mapper.Map<FichaFuncional, FichaFuncionalViewModel>(ficha));
                 else return NotFound();
             }
             catch (Exception ex)
@@ -66,13 +76,7 @@ namespace gestao.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    var novaFicha = new FichaFuncional()
-                    {
-                        fichafuncId = model.fichaid,
-                        titulo = model.Titulo,
-                        descricao = model.Descricao,
-                        dataficha = model.DataFicha
-                    };
+                    var novaFicha = _mapper.Map<FichaFuncionalViewModel, FichaFuncional>(model);
                     //  Comentários:
                     // Aqui vou fazer uma pequena validação. Verifica se 
                     // não vou passado data alguma. Isso porque não passei 
@@ -84,22 +88,12 @@ namespace gestao.Controllers
                     };
                 _repository.AdicionarEntidade(novaFicha);
                 _repository.Commit();
-                //  Comentários:
-                // Como eu convertir o mode para novaFicha, agora faço o trabalho 
-                // o contrário
-                var vm = new FichaFuncionalViewModel()
-                {
-                    fichaid = novaFicha.fichafuncId,
-                    Titulo = novaFicha.titulo,
-                    Descricao = novaFicha.descricao,
-                    DataFicha = novaFicha.dataficha
-                };
 
                 //  Comentários:
-                // Nesse ponto já tenho o id gerado
-                //  pelo banco e se eu precisar acessar
-                // outros campos eu passo model de volta. 
-                return Created($"/api/fichas/{vm.fichaid}", model);
+                // Como eu convertir o mode para novaFicha, agora faço o trabalho 
+                // o contrário. Mas observe que para isso funcionar, ir lá no profile e 
+                // colocar ReverseMap.
+                return Created($"/api/fichas/{novaFicha.fichafuncId}", _mapper.Map<FichaFuncional,FichaFuncionalViewModel>(novaFicha));
                 } else
                 {
                     return BadRequest(ModelState);
