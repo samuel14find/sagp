@@ -42,7 +42,10 @@ namespace gestao.Data
             try
             {
              _logger.LogInformation("Bucando todos os funcionarios");
-             return _context.Funcionarios.OrderBy(f => f.nome).ToList();
+             return _context.Funcionarios
+             .Include(fi => fi.Fichas)
+             .OrderBy(f => f.nome)
+             .ToList();
             } catch (Exception ex)
             {
                 _logger.LogError($"Falha em obter todos os funcionarios: {ex}");
@@ -66,7 +69,10 @@ namespace gestao.Data
 
         public Funcionario GetFuncionarioPorId(int idFunc)
         {
-            return _context.Funcionarios.Find(idFunc);
+            return _context.Funcionarios
+            .Include(fi => fi.Fichas)
+            .Where(func => func.FuncionarioId == idFunc)
+            .FirstOrDefault();
         }
 
         public FichaFuncional GetFichaPorId(int id)
