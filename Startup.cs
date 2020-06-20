@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using gestao.Data;
 using gestao.Service;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,10 @@ namespace gestao
 
             });
             services.AddTransient<SeederFuncionario>();
+            //  Comentarios:
+            //  Lembrar que tenho que criar os AutoMapper profiles, que são uma maneira
+            //  de configurar o mapeamento que for usar.
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddControllersWithViews();
             services.AddScoped<IRepository, GestaoRepository>();
             services.AddTransient<IMailService, MockMailService>();
