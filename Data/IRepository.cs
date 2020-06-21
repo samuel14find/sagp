@@ -17,5 +17,7 @@ namespace gestao.Data
         // não ficarei restrito à algum tipo. Porque o método que usaremos na 
         // implementação apenas vai pegar os dados e anexá-lo ao contexto 
         void AdicionarEntidade(object model);
+        void AdicionarFichaParaFunc(int funcId, FichaFuncional novaFicha);
+        Funcionario GetFuncionario(int funcId, bool includeFicha);
     }
 }
