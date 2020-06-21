@@ -49,7 +49,7 @@ namespace gestao.Data.Entities
         public DateTimeOffset? dataexercicio { get; set; }
 
 
-        public ICollection<FichaFuncional> Fichas {get; set;} // Propriedade navegacional de coleção
+        public ICollection<FichaFuncional> Fichas {get; set;} = new List<FichaFuncional>(); // Propriedade navegacional de coleção
     }
     
 }
