@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using gestao.Data.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 
 namespace gestao.Data
@@ -20,23 +22,45 @@ namespace gestao.Data
 //  Com o método utilizado para localizar o arquivo func.json, fazemos a localização dele
 //  em RunTime.
 //  Depois que terminei aqui, como vamos executá-lo. Como vou conseguir uma instancia 
-//  dessa classe e então chamar o Seed()? Verificar lá no Program.cs. 
+//  dessa classe e então chamar o Seed()? Verificar lá no Program.cs.
+//  Observe também que vou trabaser com o Identity. Vamos usar a classe UserManager, para 
+// pegar o StoreUser como um parâmetro generico, que vai saber qual tipo de usuário essa 
+// class vai gerenciar.  
 
 {
     public class Seeder
     {
         private readonly AppGestaoContext _context;
         private readonly IWebHostEnvironment _hosting;
-        public Seeder(AppGestaoContext context, IWebHostEnvironment hosting)
+        private readonly UserManager<StoreUser> _userManager;
+        public Seeder(AppGestaoContext context, IWebHostEnvironment hosting, UserManager<StoreUser> userManager)
         {
+            this._userManager = userManager;
             this._hosting = hosting;
             this._context = context;
 
         }
-        public void SeedDados()
+        public async Task SeedDadosAsync()
         {
-            _context.Database.EnsureCreated(); 
-            if(!_context.Funcionarios.Any())
+            _context.Database.EnsureCreated();
+            StoreUser user = await _userManager.FindByEmailAsync("samuel.bicalho@ifmg.edu.br");
+
+            if(user == null)
+            {
+                user = new StoreUser()
+                {
+                    PrimeiroNome = "Samuel",
+                    UltimoNome = "Pereira",
+                    Email = "samuel.bicalho@ifmg.edu.br",
+                    UserName = "samuel.bicalho@ifmg.edu.br"
+                };
+            }
+            var result = await _userManager.CreateAsync(user, "140883");
+            if(result != IdentityResult.Success)
+            {
+                throw new InvalidOperationException("Nao pode criar novo usuário do sistema");
+            }
+            if (!_context.Funcionarios.Any())
             {
                 //É necessário criar dados
                 var filepath = Path.Combine(_hosting.ContentRootPath, "Data/func.json");
@@ -47,7 +71,7 @@ namespace gestao.Data
                 _context.SaveChanges();
 
             }
-            
+
         }
     }
 }
