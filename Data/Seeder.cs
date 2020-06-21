@@ -32,10 +32,9 @@ namespace gestao.Data
     {
         private readonly AppGestaoContext _context;
         private readonly IWebHostEnvironment _hosting;
-        private readonly UserManager<StoreUser> _userManager;
-        public Seeder(AppGestaoContext context, IWebHostEnvironment hosting, UserManager<StoreUser> userManager)
+        public Seeder(AppGestaoContext context, IWebHostEnvironment hosting)
         {
-            this._userManager = userManager;
+            
             this._hosting = hosting;
             this._context = context;
 
@@ -51,7 +50,6 @@ namespace gestao.Data
                 var funcionarios = JsonConvert.DeserializeObject<IEnumerable<Funcionario>>(json);
                 //Se tá ok eu adiciono na tabela usando AddRange
                 _context.Funcionarios.AddRange(funcionarios);
-                funcionarios.
                 _context.SaveChanges();
 
             }
