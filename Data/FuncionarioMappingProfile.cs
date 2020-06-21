@@ -18,6 +18,10 @@ namespace gestao.Data
             CreateMap<Funcionario, FuncionarioViewModel>()
             .ForMember(fuc => fuc.funcionarioid, ex => ex.MapFrom(fuc => fuc.FuncionarioId))
             .ReverseMap();
+
+            CreateMap<FichaFuncional, FichaFuncionalViewModel>()
+            .ForMember(fich => fich.fichaid, ex =>ex.MapFrom(fich => fich.fichafuncId))
+            .ReverseMap();
         }
     }
 }
