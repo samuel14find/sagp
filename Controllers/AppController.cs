@@ -1,6 +1,7 @@
 using gestao.Data;
 using gestao.Data.Entities;
 using gestao.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace gestao.Controllers
@@ -20,6 +21,7 @@ namespace gestao.Controllers
             ViewBag.Title = "Home";
             return View();
         }
+        [Authorize]
         [HttpGet("Cadastro")]
         public IActionResult Cadastro()
         {
