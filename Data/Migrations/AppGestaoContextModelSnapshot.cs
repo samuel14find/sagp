@@ -183,6 +183,9 @@ namespace gestao.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("cargo")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
@@ -218,6 +221,8 @@ namespace gestao.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("FuncionarioId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Funcionarios");
                 });
@@ -349,6 +354,13 @@ namespace gestao.Migrations
                     b.HasOne("gestao.Data.Entities.Funcionario", "funcionario")
                         .WithMany("Fichas")
                         .HasForeignKey("FuncionarioId");
+                });
+
+            modelBuilder.Entity("gestao.Data.Entities.Funcionario", b =>
+                {
+                    b.HasOne("gestao.Data.Entities.StoreUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
