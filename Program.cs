@@ -32,8 +32,8 @@ namespace gestao
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
             using(var scope = scopeFactory.CreateScope())
             {
-                var seeder = scope.ServiceProvider.GetService<SeederFuncionario>();
-                seeder.Seed();
+                var seeder = scope.ServiceProvider.GetService<Seeder>();
+                seeder.SeedDados();
             }
         }
 
