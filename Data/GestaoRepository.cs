@@ -37,15 +37,22 @@ namespace gestao.Data
                 return null;
             }
         }
-        public IEnumerable<Funcionario> GetFuncionarios()
+        public IEnumerable<Funcionario> GetFuncionarios(bool includeFichas)
         {
             try
             {
-             _logger.LogInformation("Bucando todos os funcionarios");
+                if(includeFichas)
+                {
+             _logger.LogInformation("Bucando todos os funcionarios com as fichas");
              return _context.Funcionarios
              .Include(fi => fi.Fichas)
              .OrderBy(f => f.nome)
              .ToList();
+                } else 
+                {
+                    _logger.LogInformation("Bucando todos os funcionarios sem as fichas");
+                    return _context.Funcionarios.ToList();
+                }
             } catch (Exception ex)
             {
                 _logger.LogError($"Falha em obter todos os funcionarios: {ex}");

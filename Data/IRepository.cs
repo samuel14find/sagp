@@ -7,7 +7,7 @@ namespace gestao.Data
     {
         Funcionario Add(Funcionario novoFuncionario);
          int Commit();
-         IEnumerable<Funcionario> GetFuncionarios();
+         IEnumerable<Funcionario> GetFuncionarios(bool includeFichas);
         Funcionario GetFuncionarioPorMatricula(string matricula);
         IEnumerable<FichaFuncional> GetFichas();
         Funcionario GetFuncionarioPorId(int v);
