@@ -69,10 +69,19 @@ namespace gestao.Data
 
         public Funcionario GetFuncionarioPorId(int idFunc)
         {
+            try
+            {
+            _logger.LogInformation($"Buscando o funcionário de id: {idFunc}");
             return _context.Funcionarios
             .Include(fi => fi.Fichas)
             .Where(func => func.FuncionarioId == idFunc)
             .FirstOrDefault();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError($"Erro ao buscar um funcionário pela id: {ex}");
+                return null;
+            }
         }
 
         public FichaFuncional GetFichaPorId(int id)
@@ -87,6 +96,45 @@ namespace gestao.Data
         public void AdicionarEntidade(object model)
         {
            _context.Add(model);
+        }
+
+        public void AdicionarFichaParaFunc(int funcId, FichaFuncional novaFicha)
+        {
+            try 
+            {
+              
+                var funcionario = GetFuncionario(funcId, false);
+                _logger.LogInformation($"Adicionado ficha à base..");
+                funcionario.Fichas.Add(novaFicha); 
+            } catch (Exception ex)
+            {
+                _logger.LogError($"Falha ao adicionar a ficha: {ex}");
+            }      
+            
+        }
+
+        public Funcionario GetFuncionario(int funcId, bool includeFicha)
+        {
+            try
+            {
+
+            if(includeFicha)
+            {
+                _logger.LogInformation($"Retornado funcionario para adicionar ficha");
+                return _context.Funcionarios
+                    .Include(f => f.Fichas)
+                    .Where(c => c.FuncionarioId==funcId)
+                    .FirstOrDefault();
+
+            }
+            return _context.Funcionarios.Where(f => f.FuncionarioId == funcId).FirstOrDefault();
+                } 
+            catch(Exception ex)
+            {
+                _logger.LogError($"Erro ao buscar funcionario para adicionar ficha:{ex}");
+                return null;
+            }
+           
         }
     }
 }
