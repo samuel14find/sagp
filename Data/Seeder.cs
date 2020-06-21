@@ -40,26 +40,9 @@ namespace gestao.Data
             this._context = context;
 
         }
-        public async Task SeedDadosAsync()
+        public void SeedDados()
         {
-            _context.Database.EnsureCreated();
-            StoreUser user = await _userManager.FindByEmailAsync("samuel.bicalho@ifmg.edu.br");
-
-            if(user == null)
-            {
-                user = new StoreUser()
-                {
-                    PrimeiroNome = "Samuel",
-                    UltimoNome = "Pereira",
-                    Email = "samuel.bicalho@ifmg.edu.br",
-                    UserName = "samuel.bicalho@ifmg.edu.br"
-                };
-            }
-            var result = await _userManager.CreateAsync(user, "140883");
-            if(result != IdentityResult.Success)
-            {
-                throw new InvalidOperationException("Nao pode criar novo usuário do sistema");
-            }
+            
             if (!_context.Funcionarios.Any())
             {
                 //É necessário criar dados
@@ -68,6 +51,7 @@ namespace gestao.Data
                 var funcionarios = JsonConvert.DeserializeObject<IEnumerable<Funcionario>>(json);
                 //Se tá ok eu adiciono na tabela usando AddRange
                 _context.Funcionarios.AddRange(funcionarios);
+                funcionarios.
                 _context.SaveChanges();
 
             }
