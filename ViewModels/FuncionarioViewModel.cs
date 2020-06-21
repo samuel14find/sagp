@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace gestao.ViewModels
@@ -35,5 +36,7 @@ namespace gestao.ViewModels
         public DateTimeOffset? dataposse { get; set; }
 
         public DateTimeOffset? dataexercicio { get; set; }
+
+        public ICollection<FichaFuncionalViewModel> Fichas {get; set;} = new List<FichaFuncionalViewModel>();
     }
 }
