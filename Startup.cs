@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace gestao
 {
@@ -33,15 +34,18 @@ namespace gestao
                 cfg.UseSqlServer(_config.GetConnectionString("StringConexaoBancoGestao"));
 
             });
-            services.AddTransient<SeederFuncionario>();
+            services.AddTransient<Seeder>();
             //  Comentarios:
             //  Lembrar que tenho que criar os AutoMapper profiles, que são uma maneira
             //  de configurar o mapeamento que for usar.
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddControllersWithViews();
+           services.AddControllersWithViews()
+                   .AddNewtonsoftJson(options =>
+                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddScoped<IRepository, GestaoRepository>();
             services.AddTransient<IMailService, MockMailService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
