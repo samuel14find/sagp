@@ -22,16 +22,21 @@ namespace gestao.Controllers
             this._logger = logger;
             this._mapper = mapper;
         }
-
+        // Comentários:
+        // Aqui estou implementando o conceito de QueryStrings. Para que eu posso 
+        // recuperar funcionarios passando alguma informação que eu não queira.
+        // Eu defini o parâmetro para true, mas eu nao precisava porque o padrão 
+        // já é esse.
          [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get( bool includeFichas = true)
         {
             try
             {
+                var results = _repository.GetFuncionarios(includeFichas);
                 // Comentarios:
                 // Ao usar o Mapper, se for mapear collections, a dica é mapear 
                 // de collection para collection, de list para list etc. 
-                return Ok(_mapper.Map<IEnumerable<Funcionario>, IEnumerable<FuncionarioViewModel>>(_repository.GetFuncionarios()));
+                return Ok(_mapper.Map<IEnumerable<Funcionario>, IEnumerable<FuncionarioViewModel>>(results));
             }
             catch (Exception ex)
             {
