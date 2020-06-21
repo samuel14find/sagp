@@ -33,13 +33,8 @@ namespace gestao
             using(var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<Seeder>();
-                //  Comentários:
-                // Aqui vou recebendo um warning CS4014, tenho um asynchronous method. Ele 
-                // vai retornar uma task. Vou usar o Wait(), para dizer o seguinte: "Vai, fazer 
-                // o "seeding" que eu irei esperar.Ire dar um Block até terminar o seeding. 
-                // Isso pode deixar a inicialização do web server, mas não ira afetar o comportamento
-                // em runtime. 
-                seeder.SeedDadosAsync().Wait();
+               
+                seeder.SeedDados();
             }
         }
 
