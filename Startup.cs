@@ -5,10 +5,12 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using gestao.Data;
+using gestao.Data.Entities;
 using gestao.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -61,8 +63,9 @@ namespace gestao
             }
             app.UseStaticFiles();
             app.UseNodeModules();
+            app.UseAuthentication(); // Tem que ser antes do Routing e Endpoints
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(cfg =>
             {
                 cfg.MapControllerRoute("Fallback", "{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });
