@@ -16,5 +16,6 @@ namespace gestao.ViewModels
          [Required]
         public string  Descricao { get; set; }
         public DateTimeOffset DataFicha { get; set; }
+        //public FuncionarioViewModel Funcionario {get; set;}
     }
 }
