@@ -36,6 +36,10 @@ namespace gestao
                 cfg.UseSqlServer(_config.GetConnectionString("StringConexaoBancoGestao"));
 
             });
+            //  Comentarios
+            // Aqui trago a funcionalidade de trabalhar com altenticação. 
+            // Falo aqui para usar o Entity Framework para armazenar os dados. 
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppGestaoContext>();
             services.AddTransient<Seeder>();
             //  Comentarios:
             //  Lembrar que tenho que criar os AutoMapper profiles, que são uma maneira
@@ -44,6 +48,7 @@ namespace gestao
            services.AddControllersWithViews()
                    .AddNewtonsoftJson(options =>
                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddRazorPages();// Preciso dele porque o Identity usa razor pages   
             services.AddScoped<IRepository, GestaoRepository>();
             services.AddTransient<IMailService, MockMailService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -63,12 +68,13 @@ namespace gestao
             }
             app.UseStaticFiles();
             app.UseNodeModules();
-            app.UseAuthentication(); // Tem que ser antes do Routing e Endpoints
             app.UseRouting();
+            app.UseAuthentication(); 
             app.UseAuthorization();
             app.UseEndpoints(cfg =>
             {
                 cfg.MapControllerRoute("Fallback", "{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });
+                cfg.MapRazorPages(); //Preciso disso porque o Identity vai usar Razor Pages
             });
         }
     }
