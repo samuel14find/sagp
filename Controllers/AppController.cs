@@ -28,6 +28,7 @@ namespace gestao.Controllers
 
             return View();
         }
+        [Authorize]
         [HttpPost("Cadastro")]
         [ValidateAntiForgeryToken]
         public IActionResult Cadastro([Bind("matricula,nome,cargo,setor,email,datanomeacao,dataposse,dataexercicio")] Funcionario funcionario)
