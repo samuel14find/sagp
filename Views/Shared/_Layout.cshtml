@@ -54,16 +54,32 @@
         <a href="breadcrumb.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Breadcrumb</a>-->
       </div>
     </div>
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+        <button class="btn btn-link" id="menu-toggle">
+          <i id="open-close" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+        </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+            <partial name= "_LoginPartial"/>
+            </li> 
+          </ul>
+        </div>
+      </nav>
+      <!-- Render Body  -->
      @RenderBody()
+    </div>
   </div>
-
-
   <!-- javascrips imports -->
   <script src="~/node_modules/jquery/dist/jquery.slim.min.js"></script>
   <script src="~/js/min/popper.min.js"></script>
   <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="~/js/template-functions.js"></script>
-
+  @RenderSection("Scripts", required: false)
 </body>
 
 </html>
