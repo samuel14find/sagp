@@ -48,5 +48,11 @@ namespace gestao.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult ListarFuncionarios()
+        {
+            return View();
+        }
+
     }
 }
