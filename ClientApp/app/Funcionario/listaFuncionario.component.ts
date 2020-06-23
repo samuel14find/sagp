@@ -1,29 +1,23 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import { DataService } from '../Shared/DataService';
+import {Funcionario} from '../Shared/funcionario';
 @Component({
     selector: "lista-funcionario",
     templateUrl: "listaFuncionario.component.html",
     styleUrls: []
 })
-export class ListaFuncionario{
-    public funcionarios = 
-    [
-        {
-            name: "Samuel S Bicalho Pereira",
-            matricula: "1827333",
-            id: 1,
-            setor: "Gestão de Pessoas"
-        },
-        {
-            name: "Antônio Evaristo Pereira",
-            matricula: "297444",
-            id: 2,
-            setor: "Fazenda"
-        },
-        {
-            name: "Margarida Bicalho Salvador Pereira",
-            matricula: "2579852",
-            id: 3,
-            setor: "Gestão de Compras"
+export class ListaFuncionario implements OnInit{
+    constructor(private data: DataService){
+        
+    }
+
+    public funcionarios: Funcionario[] = [];
+        ngOnInit(): void  {
+           this.data.carregarFuncionarios()
+           .subscribe(sucess => {
+               if(sucess){
+                   this.funcionarios = this.data.funcionarios;
+               }
+           });
         }
-    ]; 
 }
