@@ -4,7 +4,8 @@ import {HttpClientModule} from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import {ListaFuncionario} from './Funcionario/ListaFuncionario.component';
-import {DataService} from './Shared/DataService'
+import {DataService} from './Shared/DataService';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {DataService} from './Shared/DataService'
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     HttpClientModule
   ],
   providers: [
