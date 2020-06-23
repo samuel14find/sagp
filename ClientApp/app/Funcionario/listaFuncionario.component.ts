@@ -7,6 +7,8 @@ import {Funcionario} from '../Shared/funcionario';
     styleUrls: []
 })
 export class ListaFuncionario implements OnInit{
+    pag: number = 1;
+    contador: number = 15;
     constructor(private data: DataService){
         
     }
