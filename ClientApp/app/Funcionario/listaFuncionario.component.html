@@ -32,15 +32,25 @@
                               <th class="text-center">Id</th>
                               <th>Matricula</th>
                               <th>Nome</th>
+                              <th>Cargo</th>
                               <th>Setor</th>
+                              <th>Email</th>
+                              <th>Data Nomeção</th>
+                              <th>Data Posse</th>
+                              <th>Data Exercício</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr *ngFor='let f of funcionarios'>
-                              <th class="text-center">{{f.id}}</th>
+                              <th class="text-center">{{f.funcionarioid}}</th>
                               <td>{{f.matricula}}</td>
                               <td>{{f.nome}}</td>
+                              <td>{{f.cargo}}</td>
                               <td>{{f.setor}}</td>
+                              <td>{{f.email}}</td>
+                              <td>{{f.datanomeacao}}</td>
+                              <td>{{f.dataposse}}</td>
+                              <td>{{f.dataexercicio}}</td>
                             </tr>
                           </tbody>
                         </table>
