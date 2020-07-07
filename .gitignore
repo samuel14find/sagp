@@ -289,3 +289,4 @@ __pycache__/
 # Ignorar arquivos instalados no node_modules
 node_modules/*
 Data/Migrations/*
+Migrations/*
