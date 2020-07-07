@@ -44,6 +44,7 @@
         <a asp-controller="App" asp-action="Index" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Home</a>
         <a asp-controller="App" asp-action="Cadastro" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Cadastrar</a>
         <a asp-controller="App" asp-action="ListarFuncionarios" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Listar Funcionarios</a>
+        <a asp-controller="FuncionarioCarreira" asp-action="Create" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Carreiras</a>
         <!-- 
         <a href="tables.html" class="list-group-item list-group-item-action"><i class="fa fa-table" aria-hidden="true"></i>Tables</a>
         <a href="buttons.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Buttons</a>
@@ -71,12 +72,12 @@
           </ul>
         </div>
       </nav>
-      <!-- Render Body  -->
+      <!-- Renderiza a Index Aqui -->
      @RenderBody()
     </div>
   </div>
   <!-- javascrips imports -->
-  <script src="~/node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="~/js/min/popper.min.js"></script>
   <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="~/js/template-functions.js"></script>
