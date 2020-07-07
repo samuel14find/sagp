@@ -1,0 +1,14 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-controller="FuncionarioCarreira" asp-action="Index">
+    Listar
+  </button>
+  <div class="dropdown-menu">
+      @foreach (var carreira in Model)
+      {
+          <a class="dropdown-item" asp-controller="FuncionarioCarreira" asp-action="Index"
+                asp-route-porCarreira="@carreira.Iso5">@carreira.NomeCarreira</a>
+      }
+   <div class="dropdown-divider"></div>
+    <a class="dropdown-item" asp-controller="FuncionarioCarreira" asp-action="Index">Todos</a>
+  </div>
+</div>
