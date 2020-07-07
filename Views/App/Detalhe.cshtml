@@ -1,0 +1,30 @@
+@model FuncionarioDetalhesViewModel
+
+<div class="container-fluid">
+      <div class="row">
+            <div class="card col-md-12">
+                <div class="card">
+                        <div class="card-block">
+                            <h2 class="card-title">@Model.nome</h2>
+                            <p class="card-text">@Model.FuncionarioId</p>
+                            <p class="card-text">@Model.matricula</p>
+                            <p class="card-text">@Model.cargo</p>
+                            <p class="card-text">@Model.setor</p>
+                            <p class="card-text">@Model.email</p>
+                            <p class="card-text">@Model.datanomeacao</p>
+                            <p class="card-text">@Model.dataposse</p>
+                            <p class="card-text">@Model.dataexercicio</p>
+                            <p class="card-text">@Model.IdentificadorFuncionarioCarreira</p>
+                            <p class="card-text">@Model.NomeCarreira</p>
+                            <p class="card-text">@Model.NomeProgressao</p>
+                            <p class="btn btn-group pull-right">
+                                <a asp-controller="App" asp-action="ListarFuncionarios" class="btn btn-default">Listar Funcionários</a>
+                                <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@Model.FuncionarioId">
+                                    Criar Ficha para @Model.nome ?
+                                </a>
+                            </p>
+                        </div>
+                </div>
+            </div>
+      </div>
+</div>
