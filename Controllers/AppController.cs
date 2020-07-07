@@ -1,6 +1,7 @@
 using gestao.Data;
 using gestao.Data.Entities;
 using gestao.Service;
+using gestao.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,9 +11,12 @@ namespace gestao.Controllers
     {
         private readonly IMailService _mailService;
         private readonly IRepository _context;
-        public AppController(IMailService mailService, IRepository context)
+        private readonly IFuncionarioRepository _ctx;
+
+        public AppController(IMailService mailService, IRepository context, IFuncionarioRepository ctx)
         {
             this._context = context;
+            this._ctx = ctx;
             this._mailService = mailService;
 
         }
@@ -51,8 +55,44 @@ namespace gestao.Controllers
         [Authorize]
         public IActionResult ListarFuncionarios()
         {
-            return View();
+            ViewBag.Title = "Lista dos Funcionários";
+            var listaFuncionarios =  new ListaFuncionarioViewModel();
+            listaFuncionarios.Funcionarios = _context.GetFuncionarios(false);
+            return View(listaFuncionarios);
         }
+
+        public IActionResult Detalhe(int funcionarioId)
+        {
+            var funcionario = _context.GetFuncionarioPorId(funcionarioId);
+            if(funcionario == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            var funcionarioCarreira = _ctx.GetFuncionarioByName(funcionario.nome);
+            if(funcionarioCarreira == null)
+            {
+                return View("~/Views/Error/Error.cshtml");
+            }
+            var funcionarioDetalhesViewModel = new FuncionarioDetalhesViewModel()
+            {
+                FuncionarioId = funcionario.FuncionarioId,
+                matricula = funcionario.matricula,
+                nome = funcionario.nome,
+                cargo = funcionario.cargo,
+                setor = funcionario.setor,
+                email = funcionario.email,
+                datanomeacao = funcionario.datanomeacao,
+                dataposse = funcionario.dataposse,
+                dataexercicio = funcionario.dataexercicio,
+                IdentificadorFuncionarioCarreira = funcionarioCarreira.IdentificadorFuncionarioCarreira,
+                NomeCarreira = funcionarioCarreira.NomeCarreira,
+                NomeProgressao = funcionarioCarreira.NomeProgressao
+            };
+
+            return View(funcionarioDetalhesViewModel);
+        }
+
+        
 
     }
 }
