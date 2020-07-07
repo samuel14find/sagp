@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./wwwroot/dist/out-tsc",
+    "outDir": "./wwwroot/clientapp/dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

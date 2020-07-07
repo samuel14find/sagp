@@ -1,0 +1,54 @@
+@model IEnumerable<FuncionarioCarreiraDisplayViewModel>
+
+@{
+    ViewBag.Title = "Lista de Funcionarios";
+}
+
+<h2>Customer List</h2>
+<p>
+    Lista de Funcionarios com suas Carreiras cadastrada
+</p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdentificadorFuncionarioCarreira)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeFuncionario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCarreira)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeProgressao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdentificadorFuncionarioCarreira)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeFuncionario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCarreira)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeProgressao)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+</table>

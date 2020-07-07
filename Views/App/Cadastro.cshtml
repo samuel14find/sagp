@@ -8,7 +8,7 @@
               <div class="pd-15">
                   <h1 class="title">@ViewBag.Title</h1>
                   <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br/> sed do eiusmod tempor incididunt ut</p>            
-                  <form class="needs-validation" asp-action="Cadastro" >
+                  <form class="needs-validation" asp-controller="App" asp-action="Cadastro" method="POST">
                       <div asp-validation-summary="ModelOnly"></div>
                       <div class="form-row">
                         <div class="col-md-3 mb-3">

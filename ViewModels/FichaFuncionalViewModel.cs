@@ -11,7 +11,7 @@ namespace gestao.ViewModels
     {
         public int fichaid { get; set; }
         [Required]
-        [MinLength(5)]
+        [MinLength(10)]
         public string Titulo { get; set; }
          [Required]
         public string  Descricao { get; set; }

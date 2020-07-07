@@ -1,0 +1,36 @@
+@model CarrinhoFichaViewModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="pd-15">
+                    <h2>Adicionar ficha ao usuário selecionado?</h2>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome do Funcionario</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CarrinhoFicha.CarrinhoFichaItens)
+                            {
+                                <tr>
+                                    <td class="text-left">@item.Funcionario.nome</td>
+                                    
+                                    <td class="text-center"><a class="glyphicon glyphicon-remove text-danger remove" asp-controller="CarrinhoFicha" asp-action="RemoverFuncionarioDoCarrinhoFicha" asp-route-funcionarioId="@item.Funcionario.FuncionarioId">Remover</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <div class="text-right">
+                        <div class="btn-group ">
+                            <a class="btn btn-success" asp-controller="" asp-action="">Fazer a ficha</a>
+                            <a class="btn btn-grey btn-sm" asp-controller="App" asp-action="ListarFuncionarios">
+                            Adicionar mais funcionarios<span class="caret"></span>
+                            </a>
+                            
+                        </div>
+                    </div>
+        </div>
+        </div>
+    </div>

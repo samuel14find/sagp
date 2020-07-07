@@ -1,16 +1,14 @@
-@* 
-USANDO ANGULAR
-@section Scripts {
-  <script src="~/clientapp/runtime-es5.js"></script>
-  <script src="~/clientapp/polyfills-es5.js"></script>
-  <script src="~/clientapp/styles-es5.js"></script>
-  <script src="~/clientapp/vendor-es5.js"></script>
-  <script src="~/clientapp/main-es5.js"></script>
+@* @model ListaFuncAdminViewModel
+<!-- 
+  Comentários:  
+  A diretiva chamada model especifica o tipo que irei tratar nessa view. Nesse caso 
+  estou indicando para a view que estou recebendo uma lista de Funcionario. Nesse 
+  casso estou informando à view que ela é fortemente tipada  
+-->
+@{
+    ViewData["Title"] = "Mostrar Carreira dos Funcioanarios";
 }
-<lista-app></lista-app>
- *@
-@model ListaFuncionarioViewModel
-    <div class="container-fluid">
+<div class="container-fluid">
       <div class="row">
         <div class="card col-md-12">
            <div class="pd-15">
@@ -43,21 +41,33 @@ USANDO ANGULAR
                               <tr>
                                 <th class="text-center">Matricula</th>
                                 <th>Nome</th>
-                                <th>Setor</th>
+                                <th>Nível de Classificação</th>
+                                <th>Nível de Capacitação</th>
+                                <th>Nível de Progressão</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach (var funcionario in Model.Funcionarios)
-                              {   
-                              <tr>
-                                <th class="text-center">@funcionario.matricula</th>
-                                <td><a asp-controller="App" asp-action="Detalhe" asp-route-funcionarioId="@funcionario.FuncionarioId">@funcionario.nome</a></td>
-                                <td>@funcionario.setor</td>
+                              <!--
+                                Aqui temos a propriedade Mode (M maiusculo) que é da página
+                                Ela é utilizada apenas para acessar o tipo que é passado na view
+                                Assim o model é a diretiva que especifica o tipo e Model é a propriedade
+                                que acessa o tipo
+                               -->
+                                @foreach (var func in Model.Funcionarios)
+                                {
+                             <tr>
+                                <td>@Html.DisplayFor(modelItem => func.FuncionarioId)</td>
+                                <td>@Html.DisplayFor(modelItem => func.nome)</td>
+                                <td>@Html.DisplayFor(modelItem => func.carreiraAdministrativa.nivelClassificacaoAdmin)</td>
+                                <td>@Html.DisplayFor(modelItem => func.carreiraAdministrativa.nivelCapacitacaoAdmin)</td>
+                                <td>@Html.DisplayFor(modelItem => func.carreiraAdministrativa.nivelProgressaoMeritoAdmin)</td>
                                 <td>
-                                  <p class="button"><a class="btn btn-primary" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@funcionario.FuncionarioId">Adicionar Ficha</a></p>
+
+                                 <p class="button"><a class="btn btn-primary" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@func.FuncionarioId">Adicionar Ficha</a></p> 
                                 </td>
-                              </tr> 
-                              }
+                             </tr>
+                             
+                                } 
                             </tbody>
                           </table>
                           <nav aria-label="Page navigation">
@@ -85,5 +95,4 @@ USANDO ANGULAR
            </div>
         </div>
       </div>
-      </div>
-    </div>
+      </div> *@

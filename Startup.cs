@@ -40,17 +40,41 @@ namespace gestao
             // Aqui trago a funcionalidade de trabalhar com altenticação. 
             // Falo aqui para usar o Entity Framework para armazenar os dados. 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppGestaoContext>();
+
             services.AddTransient<Seeder>();
+
             //  Comentarios:
             //  Lembrar que tenho que criar os AutoMapper profiles, que são uma maneira
             //  de configurar o mapeamento que for usar.
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+           services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
            services.AddControllersWithViews()
                    .AddNewtonsoftJson(options =>
                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddRazorPages();// Preciso dele porque o Identity usa razor pages   
-            services.AddScoped<IRepository, GestaoRepository>();
+
+            services.AddRazorPages();// Preciso dele porque o Identity usa razor pages  
+
+            services.AddTransient<IRepository, GestaoRepository>();
+            services.AddTransient<IProgressoesRepository, ProgressoesRepository>();
+            services.AddTransient<ICarreiraRepository, CarreiraRepository>();
+            services.AddTransient<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddTransient<IFichaFuncionalRepository, FichaFuncionalRepository>();
+
+            //  Comentários:
+            // Visto que estou usando Sessions, tenho que registrar esse serviço que 
+            // vai me dar acesso ao contexto
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddTransient<IMailService, MockMailService>();
+
+            // Com esse serviço eu pego o carrinho da section.
+            // Temos aqui um objeto criado para cada requisição. Se duas pessoas solicitarem 
+            // o objeto carrinho de ficha ao mesmo tempo, eles obtem instancias diferentes. 
+            // Porque é criado um objeto para cada requisição 
+            services.AddScoped(carrinhoFicha => CarrinhoFicha.GetCarrinho(carrinhoFicha));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
         }
@@ -65,14 +89,26 @@ namespace gestao
             else
             {
                 app.UseExceptionHandler("/error");
+                // Abordagens para tratar erro:
+                //app.UseStatusCodePages();
+                //app.UseStatusCodePages("text/html", "<h1> Status Code Page </h1>");
+                //app.UseStatusCodePagesWithRedirects("MinhaPaginaErro/{0}");
+                //app.UseStatusCodePagesWithReExecute("MinhaPaginaErro/{0}");
             }
             app.UseStaticFiles();
+            app.UseSession();
             app.UseNodeModules();
             app.UseRouting();
             app.UseAuthentication(); 
             app.UseAuthorization();
             app.UseEndpoints(cfg =>
             {
+                cfg.MapControllerRoute(
+                    name: "funcionarioPorCarreira",
+                    pattern: "FuncionarioCarreira/{porCarreira}",
+                    defaults: new {Controller="FuncionarioCarreira", Action="Index"}
+                );
+                
                 cfg.MapControllerRoute("Fallback", "{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });
                 cfg.MapRazorPages(); //Preciso disso porque o Identity vai usar Razor Pages
             });

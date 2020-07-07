@@ -9,6 +9,7 @@ namespace gestao.Data
          int Commit();
          IEnumerable<Funcionario> GetFuncionarios(bool includeFichas);
         Funcionario GetFuncionarioPorMatricula(string matricula);
+        Funcionario GetFuncionarioPorNome(string nome);
         IEnumerable<FichaFuncional> GetFichas();
         Funcionario GetFuncionarioPorId(int v);
         FichaFuncional GetFichaPorId(int id);
@@ -19,5 +20,12 @@ namespace gestao.Data
         void AdicionarEntidade(object model);
         void AdicionarFichaParaFunc(int funcId, FichaFuncional novaFicha);
         Funcionario GetFuncionario(int funcId, bool includeFicha);
+        // IEnumerable<CarreiraAdministrativa> GetCarreiraAdm {get;}
+        // IEnumerable<CarreiraProfessor> GetCarreiraProf {get;}
+
+        IEnumerable<Funcionario> GetFuncionarioAdm();
+
+        IEnumerable<Funcionario> GetFuncionarioProf();
+        
     }
 }

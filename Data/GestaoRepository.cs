@@ -17,6 +17,9 @@ namespace gestao.Data
     {
         private readonly AppGestaoContext _context;
         private readonly ILogger<GestaoRepository> _logger;
+
+       
+
         public GestaoRepository(AppGestaoContext context, ILogger<GestaoRepository> logger)
         {
             this._logger = logger;
@@ -67,6 +70,10 @@ namespace gestao.Data
         public Funcionario GetFuncionarioPorMatricula(string matricula)
         {
             return _context.Funcionarios.Where(f => f.matricula == matricula).FirstOrDefault();
+        }
+         public Funcionario GetFuncionarioPorNome(string nome)
+        {
+            return _context.Funcionarios.Where(f => f.nome == nome).FirstOrDefault();
         }
 
         public IEnumerable<FichaFuncional> GetFichas()
@@ -142,6 +149,49 @@ namespace gestao.Data
                 return null;
             }
            
+        }
+
+        // public IEnumerable<CarreiraAdministrativa> GetCarreiraAdm => _context.CarreiraAdministrativas;
+
+        // public IEnumerable<CarreiraProfessor> GetCarreiraProf => _context.CarreiraProfessores;
+
+        public IEnumerable<Funcionario> GetFuncionarioAdm()
+        {
+             try
+            {
+                   
+             _logger.LogInformation("Bucando todos os funcionarios Admin");
+             return _context.Funcionarios
+             .Include(fi => fi.Fichas)
+             .OrderBy(f => f.nome)
+             .ToList();
+               
+                
+            } catch (Exception ex)
+            {
+                _logger.LogError($"Falha em obter todos os funcionarios Admin: {ex}");
+                return null;
+            }
+        }
+
+        public IEnumerable<Funcionario> GetFuncionarioProf()
+        {
+             try
+            {
+                   
+             _logger.LogInformation("Bucando todos os funcionarios Profe");
+             return _context.Funcionarios
+             .Include(fi => fi.Fichas)
+             .OrderBy(f => f.nome)
+             .ToList();
+               
+                
+            } catch (Exception ex)
+            {
+                _logger.LogError($"Falha em obter todos os funcionarios Professor: {ex}");
+                return null;
+            }
+
         }
     }
 }
