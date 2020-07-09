@@ -2,8 +2,13 @@ using gestao.Data;
 using gestao.Data.Entities;
 using gestao.Service;
 using gestao.ViewModels;
+using gestao.Views.App;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace gestao.Controllers
 {
@@ -12,11 +17,14 @@ namespace gestao.Controllers
         private readonly IMailService _mailService;
         private readonly IRepository _context;
         private readonly IFuncionarioRepository _ctx;
+        private readonly AppGestaoContext _appGestaoContext;
 
-        public AppController(IMailService mailService, IRepository context, IFuncionarioRepository ctx)
+        public AppController(IMailService mailService, IRepository context,
+                            IFuncionarioRepository ctx, AppGestaoContext appGestaoContext)
         {
             this._context = context;
             this._ctx = ctx;
+            _appGestaoContext = appGestaoContext;
             this._mailService = mailService;
 
         }
@@ -53,12 +61,34 @@ namespace gestao.Controllers
         }
 
         [Authorize]
-        public IActionResult ListarFuncionarios()
+        public async Task<IActionResult> ListarFuncionarios(string searchString, string filtroAtual, int? pageNumber)
         {
+            
             ViewBag.Title = "Lista dos Funcionários";
-            var listaFuncionarios =  new ListaFuncionarioViewModel();
-            listaFuncionarios.Funcionarios = _context.GetFuncionarios(false);
-            return View(listaFuncionarios);
+            
+            //var listaFuncionarios =  new ListaFuncionarioViewModel();
+
+            if(searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = filtroAtual;
+            }
+
+            ViewData["FiltroAplicado"] = searchString;
+            var listaFuncionarios = from f in _appGestaoContext.Funcionarios
+                                    select f;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listaFuncionarios = _appGestaoContext.Funcionarios.Where(f => f.nome.Contains(searchString)
+                                                                                        || f.matricula.Contains(searchString) || f.setor.Contains(searchString));
+            }
+
+            int pageSize = 15;
+            return View(await PaginatedList<Funcionario>.CreateAsync(listaFuncionarios.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Detalhe(int funcionarioId)

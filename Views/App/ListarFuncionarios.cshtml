@@ -9,7 +9,7 @@ USANDO ANGULAR
 }
 <lista-app></lista-app>
  *@
-@model ListaFuncionarioViewModel
+@model gestao.Views.App.PaginatedList<gestao.Data.Entities.Funcionario>
     <div class="container-fluid">
       <div class="row">
         <div class="card col-md-12">
@@ -20,21 +20,18 @@ USANDO ANGULAR
               <div class="row">
                 <div class="col-md-12">
                   <div class="row">
-                      <div class="col-md-8">
-                        <select class="col-md-1 form-control" name="qtd">
-                          <option value="10">10</option>
-                          <option value="20">20</option>
-                        </select>
-                      </div>
-                      <div class="col-md-4">
-                          <div class="input-group">
-                            <input type="text" class="form-control" placeholder="search" />
-                            <div class="input-group-append">
-                              <span class="input-group-text btn-search">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                              </span>
-                            </div>
-                          </div>
+                      <div class="col-md-5">
+                          <form asp-action="ListarFuncionarios" method="get">
+                              <div class="input-group">
+                                  <input type="text" name="SearchString" value="@ViewData["FiltroAplicado"]" class="form-control" placeholder="search" />
+                                  <div class="input-group-append">
+                                      <span class="input-group-text btn-search">
+                                          <input type="submit" value="Search" class="fa fa-search" aria-hidden="true" />
+                                          <a asp-action="ListarFuncionarios" class="fa fa-eraser">Retornar</a>
+                                      </span>
+                                  </div>
+                              </div>
+                          </form>
                       </div>
                     </div>
                     <div class="table-responsive">
@@ -47,7 +44,7 @@ USANDO ANGULAR
                               </tr>
                             </thead>
                             <tbody>
-                              @foreach (var funcionario in Model.Funcionarios)
+                              @foreach (var funcionario in Model)
                               {   
                               <tr>
                                 <th class="text-center">@funcionario.matricula</th>
@@ -60,22 +57,28 @@ USANDO ANGULAR
                               }
                             </tbody>
                           </table>
+                        @{ 
+                            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                        }
                           <nav aria-label="Page navigation">
                             <ul class="pagination float-right">
                               <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                  <span aria-hidden="true">&laquo;</span>
-                                  <span class="sr-only">Previous</span>
+                                <a asp-action="ListarFuncionarios"
+                                   asp-route-pageNumber="@(Model.PageIndex -1)"
+                                   asp-route-filtroAtual="@ViewData["FiltroAplicado"]"aria-label="Previous" class="btn btn-red btn-sm @prevDisabled">
+                                  Anterior
                                 </a>
                               </li>
-                              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                              @*<li class="page-item active"><a class="page-link" href="#">1</a></li>
                               <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>*@
                               <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                  <span aria-hidden="true">&raquo;</span>
-                                  <span class="sr-only">Next</span>
-                                </a>
+                                  <a asp-action="ListarFuncionarios"
+                                     asp-route-pageNumber="@(Model.PageIndex +1)"
+                                     asp-route-filtroAtual="@ViewData["FiltroAplicado"]" aria-label="Next" class="btn btn-green btn-sm @nextDisabled">
+                                      Avan&#231ar
+                                  </a>
                               </li>
                             </ul>
                           </nav>
@@ -85,5 +88,5 @@ USANDO ANGULAR
            </div>
         </div>
       </div>
-      </div>
     </div>
+  
