@@ -21,7 +21,7 @@ namespace gestao.Data
 
         }
         public DbSet<Funcionario> Funcionarios { get; set; }
-        public DbSet<FichaFuncional> Fichas { get; set; }
+        public DbSet<Ficha> Fichas { get; set; }
         public DbSet<FichaDetalhe> FichaDetalhes { get; set; }
         public DbSet<CarrinhoFichaItem> CarrinhoFichaItens {get; set;}
         public DbSet<Carreira> Carreiras {get; set;}

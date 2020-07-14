@@ -13,15 +13,16 @@ namespace gestao.Data
             this._appGestaoContext = appGestaoContext;
             this._carrinhoFicha = carrinhoFicha;
         }
-        public void CriarFicha(FichaFuncional ficha)
+        public void CriarFicha(Ficha ficha)
         {
-            _appGestaoContext.Add(ficha);
-            var fichaFuncionarios = _carrinhoFicha.CarrinhoFichaItens;
+            _appGestaoContext.Fichas.Add(ficha);
+            _appGestaoContext.SaveChanges();
+            var fichaFuncionarios = _carrinhoFicha.CarrinhoFichaItens; 
             foreach (var funcionario in fichaFuncionarios)
             {
                 var fichaDetalhe = new FichaDetalhe()
                 {
-                    fichafuncId = ficha.fichafuncId,
+                    FichaId = ficha.FichaId,
                     FuncionarioId = funcionario.Funcionario.FuncionarioId
                 };
                 _appGestaoContext.FichaDetalhes.Add(fichaDetalhe);

@@ -48,7 +48,7 @@ namespace gestao.Data
                 {
              _logger.LogInformation("Bucando todos os funcionarios com as fichas");
              return _context.Funcionarios
-             .Include(fi => fi.Fichas)
+             //.Include(fi => fi.Fichas)
              .OrderBy(f => f.nome)
              .ToList();
                 } else 
@@ -76,9 +76,10 @@ namespace gestao.Data
             return _context.Funcionarios.Where(f => f.nome == nome).FirstOrDefault();
         }
 
-        public IEnumerable<FichaFuncional> GetFichas()
+        public IEnumerable<Ficha> GetFichas()
         {
-           return _context.Fichas.Include(f => f.funcionario).ToList();
+            //return _context.Fichas.Include(f => f.funcionario).ToList();
+            return null;
         }
 
         public Funcionario GetFuncionarioPorId(int idFunc)
@@ -87,7 +88,7 @@ namespace gestao.Data
             {
             _logger.LogInformation($"Buscando o funcionário de id: {idFunc}");
             return _context.Funcionarios
-            .Include(fi => fi.Fichas)
+            //.Include(fi => fi.Fichas)
             .Where(func => func.FuncionarioId == idFunc)
             .FirstOrDefault();
             }
@@ -98,11 +99,12 @@ namespace gestao.Data
             }
         }
 
-        public FichaFuncional GetFichaPorId(int id)
+        public Ficha GetFichaPorId(int id)
         {
-           return _context.Fichas
-           .Include(f => f.funcionario)
-           .Where(f => f.fichafuncId == id).FirstOrDefault();
+            //return _context.Fichas
+            //.Include(f => f.funcionario)
+            //.Where(f => f.fichafuncId == id).FirstOrDefault();
+            return null;
         }
 
         //  Comentario:
@@ -112,14 +114,14 @@ namespace gestao.Data
            _context.Add(model);
         }
 
-        public void AdicionarFichaParaFunc(int funcId, FichaFuncional novaFicha)
+        public void AdicionarFichaParaFunc(int funcId, Ficha novaFicha)
         {
             try 
             {
               
                 var funcionario = GetFuncionario(funcId, false);
                 _logger.LogInformation($"Adicionado ficha à base..");
-                funcionario.Fichas.Add(novaFicha); 
+                //funcionario.Fichas.Add(novaFicha); 
             } catch (Exception ex)
             {
                 _logger.LogError($"Falha ao adicionar a ficha: {ex}");
@@ -136,7 +138,7 @@ namespace gestao.Data
             {
                 _logger.LogInformation($"Retornado funcionario para adicionar ficha");
                 return _context.Funcionarios
-                    .Include(f => f.Fichas)
+                    //.Include(f => f.Fichas)
                     .Where(c => c.FuncionarioId==funcId)
                     .FirstOrDefault();
 
@@ -162,7 +164,7 @@ namespace gestao.Data
                    
              _logger.LogInformation("Bucando todos os funcionarios Admin");
              return _context.Funcionarios
-             .Include(fi => fi.Fichas)
+             //.Include(fi => fi.Fichas)
              .OrderBy(f => f.nome)
              .ToList();
                
@@ -181,7 +183,7 @@ namespace gestao.Data
                    
              _logger.LogInformation("Bucando todos os funcionarios Profe");
              return _context.Funcionarios
-             .Include(fi => fi.Fichas)
+             //.Include(fi => fi.Fichas)
              .OrderBy(f => f.nome)
              .ToList();
                

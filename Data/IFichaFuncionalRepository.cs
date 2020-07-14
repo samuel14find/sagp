@@ -8,6 +8,6 @@ namespace gestao.Data
 {
     public interface IFichaFuncionalRepository
     {
-        void CriarFicha(FichaFuncional ficha);
+        void CriarFicha(Ficha ficha);
     }
 }
