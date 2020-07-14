@@ -1,0 +1,41 @@
+﻿@model Ficha
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card col-md-12">
+                <div class="pd-15">
+                    <h1 class="title">Forms</h1>
+                    <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br /> sed do eiusmod tempor incididunt ut</p>
+
+                    <form asp-action="PreencherFicha" method="post">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="titulo">Título da Ficha</label>
+                                <input asp-for="titulo" class="form-control"  placeholder="Título da Ficha" required>
+                                <span asp-validation-for="titulo" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="dataficha">Data da Ficha</label>
+                                <input asp-for="dataficha" class="form-control" placeholder="Data da Ficha" required>
+                                <span asp-validation-for="dataficha" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="descricao">Descrição da Ficha</label>
+                                <textarea asp-for="descricao" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="descricao" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group float-right">
+                            <div class="btn-group col-md-offset-2 col-md-8">
+                                <input class="btn btn-red btn-sm" type="submit" value="Concluir Pedido"/>
+                            </div>
+                        </div>
+                        @*<button class="btn btn-red btn-sm float-right">Cancel</button>
+                        <button class="btn btn-green btn-sm float-right mr-1" data-toggle="modal" data-target="#modalCenter">Salvar Ficha</button>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
