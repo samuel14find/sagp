@@ -1,6 +1,6 @@
 {
     "ConnectionStrings": {
-        "StringConexaoBancoGestao":"Server=localhost\\SQLEXPRESS;Database=gepteste6;Trusted_Connection=True; MultipleActiveResultSets=true"
+        "StringConexaoBancoGestao":"Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true"
     },
     "Logging": {
         "LogLevel": {
