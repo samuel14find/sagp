@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace gestao.Controllers
 {
+
+    [Authorize(Roles = "Chefe do Setor, Assistente do Setor")]
     public class CarrinhoFichaController : Controller
     {
         // Index(). Vou definir aqui uma ViewModel, chamar de CarrinhoFichaViewModel
@@ -35,6 +37,7 @@ namespace gestao.Controllers
             return View(carrinhoFichaViewModel);
         }
 
+       
         public RedirectToActionResult AdicionarFuncionarioNoCarrinhoFicha(int funcionarioId)
         {
             var funcionarioSelecionado = _contextFuncionario.GetFuncionarioPorId(funcionarioId);
@@ -45,6 +48,7 @@ namespace gestao.Controllers
             return RedirectToAction("Index");
         }
 
+       
         public IActionResult RemoverFuncionarioDoCarrinhoFicha(int funcionarioId)
         {
             var funcionarioSelecionado = _contextFuncionario.GetFuncionarioPorId(funcionarioId);

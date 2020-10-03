@@ -1,54 +1,112 @@
-@model IEnumerable<FuncionarioCarreiraDisplayViewModel>
+@*@model IEnumerable<FuncionarioCarreiraDisplayViewModel>*@
+@model gestao.Views.App.PaginatedList<gestao.Data.Entities.FuncionarioCarreira>
 
 @{
     ViewBag.Title = "Lista de Funcionarios";
 }
 
-<h2>Customer List</h2>
-<p>
-    Lista de Funcionarios com suas Carreiras cadastrada
-</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<!--Nova Tabela-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-md-12">
+            <div class="pd-15">
+                <h1 class="title">Lista de Funcionarios com suas Carreiras cadastrada</h1>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="form-row" asp-action="Index" method="get">
+                                    <div class="col-md-4 mb-3">
+                                        <label>Filtrar por:</label>
+                                        <input type="text" name="searchString" value="@ViewData["searchString"]" />
+                                        <input type="submit" value="Search" class="btn btn-red btn-sm" />
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label><a class="btn btn-red btn-sm" asp-action="Index"> Limpar Pesquisa</a></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        
+                                        <label><a class="btn btn-green btn-sm" asp-action="Create">Voltar</a></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-style table-sm">
+                                <thread>
+                                    <tr>
+                                        <th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdentificadorFuncionarioCarreira)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeFuncionario)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeCarreira)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeProgressao)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdentificadorFuncionarioCarreira)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeFuncionario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCarreira)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeProgressao)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
-}
-</table>
+                                            Identificador da Carreira
+                                        </th>
+                                        <th>
+                                            <a asp-action="Index" asp-route-sortOrder="@ViewData["TituloParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Nome do Funcionario</a>
+                                        </th>
+                                        <th>
+                                            Carreira
+                                        </th>
+                                        <th>
+                                            Progressao
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thread>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IdentificadorFuncionarioCarreira)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NomeFuncionario)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CarreiraIso5)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProgressaoCode)
+                                            </td>
+                                            <td>
+                                                <p class="button"><a class="btn btn-danger" asp-controller="FuncionarioCarreira" asp-action="Delete" asp-route-Id="@item.IdentificadorFuncionarioCarreira">Deletar</a></p>
+                                            </td>
+                                            @*<td>
+                                                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            </td>*@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation">
+                                @{
+                                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                                }
+                                <ul class="pagination float-right">
+                                    <li class="page-item">
+                                        <a asp-action="ListarFuncionarios"
+                                           asp-route-pageNumber="@(Model.PageIndex -1)"
+                                           asp-route-filtroAtual="@ViewData["FiltroAplicado"]" aria-label="Previous" class="btn btn-red btn-sm @prevDisabled">
+                                            Anterior
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a asp-action="ListarFuncionarios"
+                                           asp-route-pageNumber="@(Model.PageIndex +1)"
+                                           asp-route-filtroAtual="@ViewData["FiltroAplicado"]" aria-label="Next" class="btn btn-green btn-sm @nextDisabled">
+                                            Avan&#231ar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

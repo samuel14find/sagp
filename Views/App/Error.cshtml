@@ -1,0 +1,18 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Erro. Alguma coisa aconteceu";
+}
+
+<body class="body-error">
+    <div class="container-error">
+        <img class="img-error" src="~/images/404.svg" />
+        <br />
+        <h3 class="h3-error">
+            O funcionário com o id = @Model
+            <br /> está com problemas! Verificar cadastro. Solicite à chefia do setor olhar a tela de log na área administrativa</h3>
+            <br />
+            <a asp-action="ListarFuncionarios" asp-controller="App" class="btn btn-outline-success">
+                <h2>Retornar para a lista de Funcionários.</h2>
+            </a>
+</div>
+</body>

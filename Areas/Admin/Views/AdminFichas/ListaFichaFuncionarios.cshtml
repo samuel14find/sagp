@@ -1,0 +1,63 @@
+﻿@page
+@{
+    
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-md-12">
+            <div class="pd-15">
+                <h1 class="title">Lista de fichas por funcionário</h1>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table id="listaFichasFunc">
+                                                              
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <environment include="Development">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" />
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    </environment>
+
+    <script>
+
+            $(function () {
+                $.ajax("/api/fichafuncionario/",
+                    { method: "get" })
+                    .then(function (response) {
+                        $("#listaFichasFunc").dataTable({
+                            data: response,
+                            columns: [
+                                { data: 'funcList' },
+                                { data: 'fichaList' }
+
+                            ],
+                            "pageLength": 8,
+                            "language": {
+                             "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+                            }
+                        });
+                    });
+            });
+
+
+    </script>
+}
+
+

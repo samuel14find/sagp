@@ -1,0 +1,19 @@
+﻿@model FuncionarioEditViewModel
+@{
+    ViewData["Title"] = "Erro. Alguma coisa aconteceu";
+}
+
+<body class="body-error">
+    <div class="container-error">
+        <img class="img-error" src="~/images/404.svg" />
+        <br />
+        <h3 class="h3-error">
+            O funcionário @Model.NomeFuncionario
+            <br /> não foi localizado para ser salvo.
+        </h3>
+        <br />
+        <a asp-action="Create" asp-controller="FuncionarioCarreira" class="btn btn-outline-success">
+            <h2>Retornar</h2>
+        </a>
+    </div>
+</body>

@@ -1,0 +1,145 @@
+﻿@model Tarefa
+@{
+    ViewData["Title"] = "CriarEditar";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pd-15">
+                <h1 class="title">
+                    Create a New Task<br />
+                </h1>
+                <p class="subtitle">These are issues your team members should take care of - ASAP!</p>
+                <form asp-controller="Tarefas" asp-action="CriarEditar">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="Titulo">Nome Tarefa</label>
+                            <input class="form-control" asp-for="Titulo" />
+                            <span asp-validation-for="Titulo" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-10 mb-10">
+                            <label asp-for="Descricao">Descrição da Tarefa</label>
+                            <textarea asp-for="Descricao" class="form-control" cols="20" id="Description" rows="5"></textarea>
+                            <span asp-validation-for="Descricao" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            @Html.LabelFor(x => x.CategoriaId, "Categoria da Tarefa")
+                            @Html.DropDownListFor(x => x.CategoriaId, (List<SelectListItem>)ViewBag.Categorias, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.CategoriaId)
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="DataLimite">Informe a data limite para fazer a tarefa</label>
+                            <input asp-for="DataLimite" class="form-control" />
+                            <span asp-validation-for="DataLimite" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label asp-for="Funcionario">Quem vai executar tarefa</label>
+                            <input asp-for="Funcionario" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="Funcionario" class="text-danger"></span>*
+                            @*@Html.LabelFor(x => x.Funcionario.matricula, "Funcionario")
+                            @Html.TextBoxFor(x => x.Funcionario.matricula, new { @class = "form-control", id = "func-associado" })
+                            @Html.ValidationMessageFor(x => x.FuncionarioId)*@
+                        </div>
+                        @*<div class="col-md-3 mb-3">
+                            @Html.HiddenFor(x => x.FuncionarioId, new { @class = "form-control", id = "fuc-id" })
+                        </div>*@
+                        <div class="col-md-3 mb-3">
+                            @*<label asp-for="MensagemAssociadaId">Mensagem Associada</label>
+            <input asp-for="MensagemAssociadaId" class="form-control" />
+            <span asp-validation-for="MensagemAssociadaId" class="text-danger"></span>*@
+
+                            @*@Html.LabelFor(x => x.MensagemAssociadaDisplay, "Associated Message")
+                            @Html.TextBoxFor(x => x.MensagemAssociadaDisplay, new { @class = "form-control", id = "msg-suggestion" })
+                            @Html.ValidationMessageFor(x => x.MensagemAssociadaId)*@
+
+                        </div>
+                        @*<div class="col-md-3 mb-3">
+                            @Html.HiddenFor(x => x.MensagemAssociadaId, new { @class = "form-control", id = "msg-id" })
+                        </div>*@
+                        <div class="col-md-10 mb-10">
+                            <label asp-for="Notas">Notas</label>
+                            <textarea asp-for="Notas" class="form-control" cols="20" rows="5"></textarea>
+                            <span asp-validation-for="Notas" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            @Html.LabelFor(x => x.Feita, "Foi Feita ?")
+                            @Html.CheckBoxFor(x => x.Feita)
+                            @Html.ValidationMessageFor(x => x.Feita)
+                        </div>
+                    </div>
+                    <button class="btn btn-red btn-sm float-left">Cancel</button>
+                    <button class="btn btn-green btn-sm float-left mr-1">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+        $(function () {
+            @*$('#msg-suggestion').autocomplete({
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("MensagensAssociada", "Tarefas")',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: request,
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                console.log(item);
+                                return {
+                                    value: item.value,
+                                    id: item.id
+                                };
+                            }));
+                        }
+
+                })
+                },
+                select: function (event, ui) {
+
+                    $("#msg-id").val(ui.item.id);
+                }
+            });*@
+           
+            $('#func-associado').autocomplete({
+                
+                source: function (request, response) {
+
+                    $.ajax({
+                        url: '@Url.Action("FuncionariosPara", "Tarefas")',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: request,
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                console.log(item);
+                                return {
+                                    value: item.value,
+                                    id: item.id
+                                };
+                            }));
+                        }
+
+                })
+                },
+                select: function (event, ui) {
+
+                    $('#fuc-id').val(ui.item.id);
+                }
+                 });
+
+        });
+
+    </script>
+}
+
+
+

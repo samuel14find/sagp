@@ -1,0 +1,58 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+.body-error {
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.container-error {
+    background-color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.h3-error {
+    font-size: 16px;
+    color: #3498db;
+    font-weight: bold;
+    text-align: center;
+    line-height: 130%;
+}
+
+a:hover {
+    color: #ff0;
+}
+
+span {
+    font-size: 14px;
+    color: #FFF;
+    font-weight: normal;
+    text-align: center;
+}
+
+    span a {
+        color: #FF0;
+        text-decoration: none;
+    }
+
+        span a:hover {
+            color: #F00;
+        }
+
+@media screen and (max-width: 500px) {
+    .img-error {
+        width: 70%;
+    }
+
+    .container-error {
+        padding: 70px 10px 10px 10px;
+    }
+
+    .h3-error {
+        font-size: 14px;
+    }
+}

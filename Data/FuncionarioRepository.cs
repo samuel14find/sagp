@@ -4,6 +4,7 @@ using System.Linq;
 using gestao.Data.Entities;
 using gestao.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace gestao.Data
 {
@@ -13,16 +14,19 @@ namespace gestao.Data
         private readonly IProgressoesRepository _progressaoRepo;
         private readonly AppGestaoContext _context;
         private readonly IRepository _repo;
+        private readonly ILogger<FuncionarioRepository> _logger;
 
         public FuncionarioRepository(ICarreiraRepository carreiraRepo
                                     ,IProgressoesRepository progressaoRepo,
                                     AppGestaoContext context,
-                                    IRepository repo)
+                                    IRepository repo,
+                                    ILogger<FuncionarioRepository> logger)
         {
             this._carreiraRepo = carreiraRepo;
             this._progressaoRepo = progressaoRepo;
             this._context = context;
             this._repo = repo;
+            _logger = logger;
         }
         
         public List<FuncionarioCarreiraDisplayViewModel> GetFuncionarios()
@@ -117,6 +121,7 @@ namespace gestao.Data
                          }
                      
             }
+            _logger.LogInformation($"A busca pelo {funcionarioedit.NomeFuncionario}, retornou vazio");
             return false;
         }
     

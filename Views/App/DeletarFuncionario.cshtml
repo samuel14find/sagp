@@ -1,0 +1,38 @@
+﻿@model gestao.Data.Entities.Funcionario
+
+@{
+    ViewData["Title"] = "Deletar Funcionário";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div card col-md-12>
+            <div class="pd-15">
+                <h1 class="title">Deletar Funcionario</h1>
+                <p class="subtitle text-danger">
+                    Você tem certeza que quer <strong>deletar</strong> o funcionário ?
+                    Apenas deletamos funcionário se for estritamente necessário e que não exista ficha funcional associada.
+                    <strong>A exclusão de funcionário afeta os registros associados!</strong>
+                </p>
+            </div>
+            <dl class="pd-15">
+                <dt>
+                    @Html.DisplayNameFor(model => model.matricula)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.matricula)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.nome)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.nome)
+                </dd>
+            </dl>
+            <form asp-action="DeletarFuncionario">
+                <input type="hidden" asp-for="FuncionarioId" />
+                <input type="submit" value="Deletar" class="btn btn-danger" /> |
+                <a class="btn btn-outline-info" asp-action="ListarFuncionarios">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+﻿@model gestao.ViewModels.FuncionarioFichaViewModel
+@{
+    ViewData["Title"] ="Funcionarios";
+}
+
+@*<h1>Funcionarios relacionados com a Ficha</h1>
+<hr />
+<h3> Ficha: @Html.DisplayFor(model => @Model.Ficha.FichaId)</h3>
+<h3> Descrição da Ficha: @Html.DisplayFor(model => @Model.Ficha.descricao)</h3>
+<h3> Data da Ficha: @Html.DisplayFor(model => @Model.Ficha.dataficha)</h3>
+<table>
+    @foreach (var funcionario in @Model.Ficha.FichaItens)
+    {
+    <tr>
+        <td align="right"> <h3>@Html.DisplayFor(modelItem => funcionario.Funcionario.matricula)</h3></td>
+        <td align="right"> <h3>@Html.DisplayFor(modelItem => funcionario.Funcionario.nome)</h3></td>
+    </tr>
+    }
+</table>
+<a asp-action="Index" class="btn btn-outline-info">Retornar</a>*@
+
+<!--NOVA TABELA-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-md-12">
+            <div class="pd-15">
+                <h1 class="title">Funcionarios relacionados com a Ficha</h1>
+                <p class="subtitle">
+                    <ul>
+                        <li>
+                            <strong>Id da Ficha:</strong> @Html.DisplayFor(model => @Model.Ficha.FichaId)
+                        </li>
+                        <hr />
+                        <li>
+                            <strong>Descrição da Ficha:</strong> @Html.DisplayFor(model => @Model.Ficha.descricao)
+                        </li>
+                        <hr />
+                        <li>
+          
+                            <strong>Data da Ficha:</strong>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.Ficha.dataficha))
+                        </li>
+                    </ul>
+                    <hr />
+                </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a asp-action="Index" class="btn btn-outline-info">Retornar</a>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table  class="table table-bordered table-hover table-style table-sm">
+                               <thead>
+                                   <tr>
+                                       <th class="text-center">Matricula</th>
+                                       <th>Nome</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   @foreach (var funcionario in @Model.Ficha.FichaItens)
+                                   {
+                                       <tr>
+                                           <th class="text-center">
+                                               @Html.DisplayFor(modelItem => funcionario.Funcionario.matricula)
+                                           </th>
+                                           <td>@Html.DisplayFor(modelItem => funcionario.Funcionario.nome)</td>
+                                       </tr>
+                                   }
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

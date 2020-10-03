@@ -22,14 +22,22 @@ namespace gestao
         // a tentativa de "semear" o banco de dados.
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args)
+                .ConfigureLogging(builder =>
+                {
+                    builder.AddConsole().AddDebug();
+                })
+                .Build();
+           
             ExecutaSeeding(host);
+            
             host.Run();
         }
 
         private static void ExecutaSeeding(IHost host)
         {
             var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+            var configuration = host.Services.GetRequiredService<IConfiguration>();
             using(var scope = scopeFactory.CreateScope())
             {
                 var seeder = scope.ServiceProvider.GetService<Seeder>();
@@ -43,6 +51,7 @@ namespace gestao
                 .ConfigureAppConfiguration(SetupConfiguration)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    
                     webBuilder.UseStartup<Startup>();
                 });
         //  Comentarios

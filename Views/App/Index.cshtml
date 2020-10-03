@@ -1,10 +1,401 @@
+@model HomePageViewModel
 <div class="container-fluid">
-  <div class="row">
-    <div class="card col-md-12">
-      <div class="pd-15">
-      <h1 class="title">@ViewBag.Title</h1>
-      <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br/> sed do eiusmod tempor incididunt ut</p>
+    @*<div class="row">
+                  <div class="card col-md-12">
+                        <div class="pd-15">
+                        <h1 class="title">@ViewBag.Title</h1>
+                        <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br/> sed do eiusmod tempor incididunt ut</p>
+                        </div>
+                  </div>
+        </div>*@
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                @ViewBag.Title <br />
+
+            </h1>
+        </div>
     </div>
-  </div>
-  </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card border-dark" style="margin-top: 10px;">
+                <div class="card-header text-white bg-dark">
+                    Tarefas Administrativas
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-style table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Descricao</th>
+                                    <th>Prazo</th>
+                                    <th>Feita</th>
+                                    <th>Acao</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var tarefa in Model.Tarefas)
+                                {
+                                    <tr>
+                                        <td>@tarefa.Titulo</td>
+                                        <td>@tarefa.Descricao</td>
+                                        <td>@tarefa.DataLimite</td>
+                                        @if (@tarefa.Feita)
+                                        {
+                                            <td>Sim</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Nao</td>
+                                        }
+
+                                        <td>@Html.ActionLink("Ver", "CriarEditar", "Tarefas", new { Id = tarefa.Id }, null)</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    @Html.ActionLink("Visualizar Todas", "VisualizarTodas", "Tarefas", null, new { @class = "pull-right btn btn-primary" })
+                    <span class="clearfix"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="col-sm-12" style="margin-top: 10px;">
+                <!--Sugestões aqui (Partial View)-->
+
+                <partial name="_LoginInfo" />
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-info" style="margin-top: 10px;">
+                <div class="card-header text-white bg-info">
+                    Indicador de Funcionarios por setor
+                </div>
+                <div class="card-body">
+                    <div class="chartContainer">
+                        <canvas id="chart">
+                        </canvas>
+                        <button id="botaoAtualizar" disabled>Atualizar</button>
+                    </div>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-secondary" style="margin-top: 10px;">
+                <div class="card-header text-white bg-secondary">
+                    Indicador de Tarefa por Funcionario
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="chartContainer_2">
+                            <canvas id="chart_2">
+                            </canvas>
+                            <button id="botaoAtualizar_2" disabled>Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-white" style="margin-top: 10px;">
+                <div class="card-header text-dark bg-light">
+                    Indicador de Carreiras
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="chartContainer_3">
+                            <canvas id="chart_3">
+                            </canvas>
+                            <button id="botaoAtualizar_3" disabled>Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-info" style="margin-top: 10px;">
+                <div class="card-header text-dark bg-info">
+                    Indicador de Tarefas por Categoria
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="chartContainer_4">
+                            <canvas id="chart_4">
+                            </canvas>
+                            <button id="botaoAtualizar_4" disabled>Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
+@section Scripts{
+    <environment include="Development">
+        <script src="~/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+
+    </environment>
+    <script type="text/javascript">
+            (
+                async () => {
+
+                    var apiData = await getApiData();
+                    var apiData_2 = await getApiData_2();
+                    var apiData_3 = await getApiData_3();
+                    var apiData_4 = await getApiData_4();
+                    const setores = apiData.map(o => o.setor);
+                    const count = apiData.map(o => o.count);
+                    const funcionarios = await apiData_2.map(o => o.funcionario);
+                    const count_2 = await apiData_2.map(o => o.count);
+                    const carreiras = apiData_3.map(o => o.carreira);
+                    const count_3 = apiData_3.map(o => o.count);
+                    const categoriasTarefa = apiData_4.map(o => o.categoria);
+                    const count_4 = apiData_4.map(o => o.count);
+
+                    const botao = document.getElementById('botaoAtualizar');
+                    const botao_2 = document.getElementById('botaoAtualizar_2');
+                    const botao_3 = document.getElementById('botaoAtualizar_3');
+                    const botao_4 = document.getElementById('botaoAtualizar_4');
+                    botao.addEventListener("click", atualizar);
+                    botao_2.addEventListener("click", atualizar_2);
+                    botao_3.addEventListener("click", atualizar_3);
+                    botao_4.addEventListener("click", atualizar_4);
+                    
+                    const ctx = document.getElementById('chart');
+                    const ctx_2 = document.getElementById('chart_2');
+                    const ctx_3 = document.getElementById('chart_3');
+                    const ctx_4 = document.getElementById('chart_4');
+                    const chart = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: setores,
+                            datasets: [
+                                {
+                                    backgroundColor: function (context) {
+                                        let index = context.dataIndex;
+                                        let value = context.dataset.data[index];
+                                        return value < 2.0 ? "red" : "green";
+                                    },
+                                    label: "Quantidade de servidores por setor cadastrado",
+                                    data: count
+                                }
+                            ]
+                        },
+                        options: {
+
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            animation: {
+                                duration: 5000,
+                                onComplete: function () {
+                                    botao.disabled = false;
+                                }
+                            }
+                        }
+                    });
+                    const chart_2 = new Chart(ctx_2, {
+                        type: 'bar',
+                        data: {
+                            labels: funcionarios,
+                            datasets: [
+                                {
+                                    backgroundColor: function (context) {
+                                        let index = context.dataIndex;
+                                        let value = context.dataset.data[index];
+                                        return value < 3.0 ? "Yellow" : "Blue";
+                                    },
+                                    label: "Quantitativos de tarefas por servidor",
+                                    data: count_2
+                                }
+                            ]
+                        },
+                        options: {
+
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            animation: {
+                                duration: 5000,
+                                onComplete: function () {
+                                    botao_2.disabled = false;
+                                }
+                            }
+                        }
+                    });
+                    const chart_3 = new Chart(ctx_3, {
+                        type: 'bar',
+                        data: {
+                            labels: carreiras,
+                            datasets: [
+                                {
+                                    backgroundColor: function (context) {
+                                        let index = context.dataIndex;
+                                        let value = context.dataset.data[index];
+                                        return value < 3.0 ? "Purple" : "magenta";
+                                    },
+                                    label: "Quantitativos de funcionarios por carreira",
+                                    data: count_3
+                                }
+                            ]
+                        },
+                        options: {
+
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            animation: {
+                                duration: 5000,
+                                onComplete: function () {
+                                    botao_3.disabled = false;
+                                }
+                            }
+                        }
+                    });
+                    const chart_4 = new Chart(ctx_4, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: categoriasTarefa,
+                            datasets: [
+                                {
+                                    backgroundColor: function (context) {
+                                        let index = context.dataIndex;
+                                        let value = context.dataset.data[index];
+                                        return value < 3.0 ? "blue" : "orange"
+                                    },
+                                    label: "Quantitativos por categoria de tarefa",
+                                    data: count_4
+                                }
+                            ]
+                        },
+                        options: {
+
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            animation: {
+                                duration: 5000,
+                                onComplete: function () {
+                                    botao_4.disabled = false;
+                                }
+                            }
+                        }
+
+                    })
+                    async function atualizar() {
+                        var apiDataAtualizar = await getApiData();
+                        const setores = apiDataAtualizar.map(o => o.setor);
+                        const count = apiDataAtualizar.map(o => o.count);
+                        chart.data.labels = setores;
+                        console.log(chart.data.datasets[0].data)
+                        chart.data.datasets[0].data = count;
+                        chart.update();
+
+                    }
+                    async function atualizar_2() {
+                        var apiData_2 = await getApiData_2();
+                        const funcionarios = await apiData_2.map(o => o.funcionario);
+                        const count_2 = await apiData_2.map(o => o.count);
+                        chart_2.data.label = funcionarios;
+                        chart_2.data.datasets[0].data = count_2;
+                        chart_2.update();
+                    }
+                    async function atualizar_3() {
+                        var apiData_3 = await getApiData_3();
+                        const carreiras = apiData_3.map(o => o.carreira);
+                        const count_3 = apiData_3.map(o => o.count);
+                        chart_3.data.labels = carreiras;
+                        console.log(chart.data.datasets[0].data)
+                        chart_3.data.datasets[0].data = count_3;
+                        chart_3.update();
+
+                    }
+                    async function atualizar_4() {
+                        var apiData_4 = await getApiData_4();
+                        const categoriasTarefa = apiData_4.map(o => o.categoria);
+                        const count_4 = apiData_4.map(o => o.count);
+                        chart_4.data.labels = categoriasTarefa;
+                        console.log(chart.data.datasets[0].data)
+                        chart_4.data.datasets[0].data = count_4;
+                        chart_4.update();
+
+                    }
+                    async function getApiData() {
+                        const apiResult = await fetch("/api/setores");
+                        const json = await apiResult.json();
+                        return json;
+                    }
+                    async function getApiData_2() {
+                        const apiResult = await fetch("/api/tarefafuncionario");
+                        const json = await apiResult.json();
+                        return json;
+                    }
+                    async function getApiData_3() {
+                        const apiResult = await fetch("/api/funcionariocarreira");
+                        const json = await apiResult.json();
+                        return json;
+                    }
+                    async function getApiData_4() {
+                        const apiResult = await fetch("/api/categoriatarefa");
+                        const json = await apiResult.json();
+                        return json;
+                    }
+                 
+                    
+                }
+            )();
+    </script>
+}

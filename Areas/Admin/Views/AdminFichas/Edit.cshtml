@@ -1,0 +1,41 @@
+﻿@model gestao.Data.Entities.Ficha
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ficha</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FichaId" />
+            <div class="form-group">
+                <label asp-for="titulo" class="control-label"></label>
+                <input asp-for="titulo" class="form-control" />
+                <span asp-validation-for="titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <textarea asp-for="descricao" class="form-control"></textarea>
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dataficha" class="control-label"></label>
+                <input asp-for="dataficha" class="form-control" />
+                <span asp-validation-for="dataficha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

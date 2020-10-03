@@ -18,7 +18,7 @@ namespace gestao.Data.Entities
 
         [Required(ErrorMessage="Informe um título para ficha")]
         [Display(Name = "Título da Ficha")]
-        [StringLength(10)]
+        [StringLength(50)]
         public string titulo { get; set; } 
 
         [Required(ErrorMessage="Informa a descrição da ficha")]  

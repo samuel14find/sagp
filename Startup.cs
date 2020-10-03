@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using gestao.Areas.Identity;
 using gestao.Data;
 using gestao.Data.Entities;
 using gestao.Service;
@@ -11,12 +12,16 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using gestao.Service.ExtensionLogger;
 
 namespace gestao
 {
@@ -39,7 +44,24 @@ namespace gestao
             //  Comentarios
             // Aqui trago a funcionalidade de trabalhar com altenticação. 
             // Falo aqui para usar o Entity Framework para armazenar os dados. 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppGestaoContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<AppGestaoContext>()
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders();
+            //Aqui vou registrar o serviço para poder usar Claims( ver Identity/)
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
+                ApplicationUserClaimsPrincipalFactory>();
+
+            //Registrando o EmailSender usando o SengGrid
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            //Autenticação com google
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = _config["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = _config["Authentication:Google:ClientSecret"];
+            });
 
             services.AddTransient<Seeder>();
 
@@ -52,7 +74,7 @@ namespace gestao
                    .AddNewtonsoftJson(options =>
                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddRazorPages();// Preciso dele porque o Identity usa razor pages  
+            services.AddRazorPages();// Preciso dele porque o Identity usa razor pages 
 
             services.AddTransient<IRepository, GestaoRepository>();
             services.AddTransient<IProgressoesRepository, ProgressoesRepository>();
@@ -76,12 +98,18 @@ namespace gestao
             services.AddScoped(carrinhoFicha => CarrinhoFicha.GetCarrinho(carrinhoFicha));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, 
+            IWebHostEnvironment env, IServiceProvider serviceProvider,
+            ILoggerFactory loggerFactory)
         {
+            // Aqui vou trabalhar com logger, mas enviando os log para meu Banco
+            loggerFactory.AddContext(LogLevel.Information, _config.GetConnectionString("StringConexaoBancoGestao"));
+            loggerFactory.AddContext(LogLevel.Error, _config.GetConnectionString("StringConexaoBancoGestao"));
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -103,15 +131,43 @@ namespace gestao
             app.UseAuthorization();
             app.UseEndpoints(cfg =>
             {
+
+                cfg.MapRazorPages(); //Preciso disso porque o Identity vai usar Razor Pages
+                cfg.MapAreaControllerRoute(
+                   name: "areaAdministrativa",
+                   areaName: "Admin",
+                   pattern: "Admin/{controller=Admin}/{action=Index}/{id?}"
+                   );
                 cfg.MapControllerRoute(
                     name: "funcionarioPorCarreira",
                     pattern: "FuncionarioCarreira/{porCarreira}",
                     defaults: new {Controller="FuncionarioCarreira", Action="Index"}
                 );
-                
-                cfg.MapControllerRoute("Fallback", "{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });
-                cfg.MapRazorPages(); //Preciso disso porque o Identity vai usar Razor Pages
+
+        
+
+                cfg.MapControllerRoute("Default", "{controller}/{action}/{id?}", new { controller = "App", Action = "Index" });
+               
+
+               
             });
+            //CreateRoles(serviceProvider).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            string[] rolesNames = { "Chefe do Setor", "Assistente do Setor", "Geral" };
+            IdentityResult result;
+            foreach (var namesRole in rolesNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(namesRole);
+                if (!roleExist)
+                {
+                    result = await roleManager.CreateAsync(new IdentityRole(namesRole));
+                }
+            }
         }
     }
 }

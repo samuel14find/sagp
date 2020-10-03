@@ -1,0 +1,43 @@
+﻿@model gestao.Data.Entities.FuncionarioCarreira
+
+@{
+    ViewData["Title"] = "Deletar Carreira";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div card col-md-12>
+            <div class="pd-15">
+                <h1 class="title">Deletar Funcionario</h1>
+                <p class="subtitle text-danger">
+                    Você tem certeza que quer <strong>apagar</strong> a carreira ?
+                    
+                </p>
+            </div>
+            <dl class="pd-15">
+                <dt>
+                    @Html.DisplayNameFor(model => model.IdentificadorFuncionarioCarreira)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.IdentificadorFuncionarioCarreira)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NomeFuncionario)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NomeFuncionario)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProgressaoCode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ProgressaoCode)
+                </dd>
+            </dl>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="IdentificadorFuncionarioCarreira" />
+                <input type="submit" value="Deletar" class="btn btn-danger" /> |
+                <a class="btn btn-outline-info" asp-action="Create">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>

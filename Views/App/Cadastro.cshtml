@@ -7,60 +7,62 @@
           <div class="card col-md-12">
               <div class="pd-15">
                   <h1 class="title">@ViewBag.Title</h1>
-                  <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br/> sed do eiusmod tempor incididunt ut</p>            
+                  <p class="subtitle">Entre com os dados do usuário.Se necessário, consulte o SIGEPE.</p>
                   <form class="needs-validation" asp-controller="App" asp-action="Cadastro" method="POST">
                       <div asp-validation-summary="ModelOnly"></div>
                       <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="matricula">Matricula</label>
-                        <input type="number" asp-for="matricula" class="form-control" id="validationTooltip01" placeholder="First name" value="" required>
-                        <span asp-validation-for="matricula" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="nome">Nome</label>
-                        <input type="text" asp-for="nome" class="form-control" id="validationTooltip02" placeholder="Last name" value="" required>
-                        <span asp-validation-for="nome" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="cargo">Cargo</label>
-                        <input type="text" asp-for="cargo" class="form-control" id="validationTooltip03" placeholder="City" required>
-                        <span asp-validation-for="cargo" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="setor">Setor</label>
-                        <input type="text" asp-for="setor" class="form-control" id="validationTooltip04" placeholder="State" required>
-                        <span asp-validation-for="setor" class="text-danger"></span>
-                        </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="matricula">Matricula</label>
+                              <input asp-for="matricula" class="form-control" required>
+                              <span asp-validation-for="matricula" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="nome">Nome</label>
+                              <input  asp-for="nome" class="form-control" required>
+                              <span asp-validation-for="nome" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="cargo">Cargo</label>
+                              <input  asp-for="cargo" class="form-control" required>
+                              <span asp-validation-for="cargo" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="setor">Setor</label>
+                              <input asp-for="setor" class="form-control" required>
+                              <span asp-validation-for="setor" class="text-danger"></span>
+                          </div>
                       </div>
                       <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="email">Email</label>
-                        <input type="email" asp-for="email" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                        <span asp-validation-for="email" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="datanomeacao">Data de nomeação</label>
-                        <input type="date" asp-for="datanomeacao" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                        <span asp-validation-for="datanomeacao" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="dataposse">Data da posse</label>
-                        <input type="date" asp-for="dataposse" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                        <span asp-validation-for="dataposse" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                        <label asp-for="dataexercicio">Entrada em Exercício</label>
-                        <input type="date" asp-for="dataexercicio" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                        <span asp-validation-for="dataexercicio" class="text-danger"></span>
-                        </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="email">Email</label>
+                              <input asp-for="email" class="form-control" required>
+                              <span asp-validation-for="email" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="datanomeacao">Data de nomeação</label>
+                              <input asp-for="datanomeacao" class="form-control" required>
+                              <span asp-validation-for="datanomeacao" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="dataposse">Data da posse</label>
+                              <input asp-for="dataposse" class="form-control" required>
+                              <span asp-validation-for="dataposse" class="text-danger"></span>
+                          </div>
+                          <div class="col-md-3 mb-3">
+                              <label asp-for="dataexercicio">Entrada em Exercício</label>
+                              <input asp-for="dataexercicio" class="form-control" required>
+                              <span asp-validation-for="dataexercicio" class="text-danger"></span>
+                          </div>
                       </div>
-                      <button class="btn btn-red btn-sm float-right">Cancel</button>
-                      <button class="btn btn-green btn-sm float-right mr-1">Save</button>
+                      <button class="btn btn-red btn-sm float-right">Cancelar</button>
+                      <button class="btn btn-green btn-sm float-right mr-1">Salvar</button>
                   </form>
-                  <div class="text-success">@ViewBag.UserMessage</div>
+                  <div>
+                      <h2><strong class="text-info">@ViewBag.UserMessage</strong></h2>
                   </div>
+                 
               </div>
           </div>
       </div>
- </div>
+</div>
     

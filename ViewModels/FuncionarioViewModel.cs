@@ -36,7 +36,5 @@ namespace gestao.ViewModels
         public DateTimeOffset? dataposse { get; set; }
 
         public DateTimeOffset? dataexercicio { get; set; }
-
-        public ICollection<FichaFuncionalViewModel> Fichas {get; set;} = new List<FichaFuncionalViewModel>();
     }
 }

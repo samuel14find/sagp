@@ -1,0 +1,18 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Erro. Alguma coisa aconteceu";
+}
+
+<body class="body-error">
+    <div class="container-error">
+        <img class="img-error" src="~/images/404.svg" />
+        <br />
+        <h3 class="h3-error">
+            Erro ao tentar buscar os Logs.
+            <br /> Temos algum problema acontecendo</h3>
+            <br />
+            <a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="btn btn-outline-success">
+                <p>Retornar</p>
+            </a>
+</div>
+</body>

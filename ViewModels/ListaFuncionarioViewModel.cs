@@ -11,5 +11,6 @@ namespace gestao.ViewModels
         // mas informando apenas nome, matricula e setor de lotação. Então lá na view eu 
         // especifico apenas isso. 
         public IEnumerable<Funcionario> Funcionarios { get; set; }
+        public IEnumerable<Ficha> Fichas { get; set; }
     }
 }

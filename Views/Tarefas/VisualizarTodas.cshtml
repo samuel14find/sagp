@@ -1,0 +1,148 @@
+﻿@model gestao.Views.App.PaginatedList<Tarefa>
+@{
+    ViewData["Title"] = "VisualizarTodas";
+}
+
+@*<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Tarefas do Gestão de Pessoas<br />
+            <small>Abaixo listamos as tarefas atribuída ao pessoal lotado no gestão de pessoas.</small>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-style table-sm">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Descricao</th>
+                        <th>Data Limite</th>
+                        <th>Realizada</th>
+                        <th>Atribuido</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tarefa in Model)
+                    {
+                        <tr>
+                            <td>@tarefa.Titulo</td>
+                            <td>@tarefa.Descricao</td>
+                            <td>@tarefa.DataLimite</td>
+                            @if (@tarefa.Feita)
+                            {
+                                <td>Sim</td>
+                            }
+                            else
+                            {
+                                <td>Nao</td>
+                            }
+                            <td>@tarefa.Funcionario</td>
+
+                            <td>@Html.ActionLink("Editar", "CriarEditar", "Tarefas", new { Id = tarefa.Id }, new { @class = "btn btn-primary" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>*@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-md-12">
+            <div class="pd-15">
+                <h1>Tarefas Gestão de Pessoas</h1>
+                <p class="subtitle">
+                    Abaixo listamos as tarefas atribuída ao pessoal lotado no gestão de pessoas. 
+                    Lembramos que a própria equipe é a responsável pelas atribuições.
+                </p>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="form-row" asp-action="VisualizarTodas" method="get">
+                                    <div class="col-md-4 mb-3">
+                                        <label>Filtrar por:</label>
+                                        <input type="text" name="searchString" value="@ViewData["searchString"]" />
+                                        <input type="submit" value="Filtrar" class="btn btn-red btn-sm" />
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label><a class="btn btn-red btn-sm" asp-action="VisualizarTodas"> Limpar Pesquisa</a></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-style table-sm">
+                                <thread>
+                                    <tr>
+                                        <th class="text-center"><a asp-action="VisualizarTodas" asp-route-sortOrder="@ViewData["TituloSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Título</a></th>
+                                        <th class="text-center">Descrição</th>
+                                        <th class="text-center"><a asp-action="VisualizarTodas" asp-route-sortOrder="@ViewData["DataCriacaoSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Criação</a></th>
+                                        <th class="text-center"><a asp-action="VisualizarTodas" asp-route-sortOrder="@ViewData["DataPrazoSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Prazo</a></th>
+                                        <th class="text-center">Realizada</th>
+                                        <th class="text-center"><a asp-action="VisualizarTodas" asp-route-sortOrder="@ViewData["FuncSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Atribuída</a></th>
+                                        <th class="text-center">Detalhes</th>
+                                    </tr>
+                                </thread>
+                                <tbody>
+                                    @foreach (var tarefa in Model)
+                                    {
+                                        <tr>
+                                            <td>@tarefa.Titulo</td>
+                                            <td>@tarefa.Descricao</td>
+                                            <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", tarefa.DataCriacao))</td>
+                                            <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy HH:mm}", tarefa.DataLimite))</td>
+                                            @if (@tarefa.Feita)
+                                            {
+                                                <td>Sim</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Nao</td>
+                                            }
+                                            <td>@tarefa.Funcionario</td>
+
+                                            <td>@Html.ActionLink("Editar", "CriarEditar", "Tarefas", new { Id = tarefa.Id }, new { @class = "btn btn-primary" })</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation">
+                                <!--Avançar/Retroceder aqui-->
+                                @{
+                                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                                }
+                                <ul class="pagination float-right">
+                                    <li class="page-item">
+                                        <a asp-action="VisualizarTodas"
+                                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                           class="btn btn-red btn-sm @prevDisabled">
+                                            Anterior
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a asp-action="VisualizarTodas"
+                                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                           class="btn btn-green btn-sm @nextDisabled">
+                                            Avançar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

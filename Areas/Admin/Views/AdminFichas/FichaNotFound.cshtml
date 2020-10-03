@@ -1,0 +1,18 @@
+﻿@model int
+@{
+    ViewData["Title"] = "404 not found";
+}
+
+
+    <div class="alert alert-danger mt-1 mb-1">
+        <h1>Erro 404 - Not Found</h1>
+        <hr />
+        <h2>
+            Ficha com o id = @Model não foi localizada 
+        </h2>
+    </div>
+
+    <a asp-action="Index" asp-controller="AdminFichas" class="btn btn-outline-success">
+        <h2>Retornar para a lista de Fichas</h2>
+    </a>
+

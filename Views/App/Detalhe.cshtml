@@ -2,29 +2,71 @@
 
 <div class="container-fluid">
       <div class="row">
-            <div class="card col-md-12">
-                <div class="card">
-                        <div class="card-block">
-                            <h2 class="card-title">@Model.nome</h2>
-                            <p class="card-text">@Model.FuncionarioId</p>
-                            <p class="card-text">@Model.matricula</p>
-                            <p class="card-text">@Model.cargo</p>
-                            <p class="card-text">@Model.setor</p>
-                            <p class="card-text">@Model.email</p>
-                            <p class="card-text">@Model.datanomeacao</p>
-                            <p class="card-text">@Model.dataposse</p>
-                            <p class="card-text">@Model.dataexercicio</p>
-                            <p class="card-text">@Model.IdentificadorFuncionarioCarreira</p>
-                            <p class="card-text">@Model.NomeCarreira</p>
-                            <p class="card-text">@Model.NomeProgressao</p>
-                            <p class="btn btn-group pull-right">
-                                <a asp-controller="App" asp-action="ListarFuncionarios" class="btn btn-default">Listar Funcionários</a>
-                                <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@Model.FuncionarioId">
-                                    Criar Ficha para @Model.nome ?
-                                </a>
-                            </p>
-                        </div>
-                </div>
-            </div>
-      </div>
+          <div class="col-md-12">
+              <div class="card border-success" style="margin-top: 10px;">
+                  <div class="card-header text-white bg-success">
+                      <h2 class="card-title">@Model.nome</h2>
+                  </div>
+                  <div class="card-body">
+                      <p class="card-text"><strong>Id do Funcionario</strong>: @Model.FuncionarioId</p>
+                      <p class="card-text"><strong>Matricula</strong>: @Model.matricula</p>
+                      <p class="card-text"><strong>Cargo</strong>: @Model.cargo</p>
+                      <p class="card-text"><strong>Setor</strong>: @Model.setor</p>
+                      <p class="card-text"><strong>Email</strong>: @Model.email</p>
+                      <p class="card-text"><strong>Data da sua nomeção no cargo</strong>:  @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.datanomeacao))</p>
+                      <p class="card-text"><strong>Data da sua posse no cargo</strong>: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dataposse))</p>
+                      <p class="card-text"><strong>Data de entrada em exercício</strong>: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.dataexercicio))</p>
+                      <p class="card-text"><strong>Identificador da Carreira</strong>: @Model.IdentificadorFuncionarioCarreira</p>
+                      <p class="card-text"><strong>Carreira atual</strong>: @Model.NomeCarreira</p>
+                      <p class="card-text"><strong>Progressao atual</strong> :@Model.NomeProgressao</p>
+                  </div>
+                  <div class="card-footer">
+                      <p class="btn btn-group pull-right">
+                          <a asp-controller="App" asp-action="ListarFuncionarios" class="btn btn-green">Listar Funcionários</a>
+                          <a class="btn btn-primary" id="cartButton" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@Model.FuncionarioId">
+                              Criar Ficha para @Model.nome ?
+                          </a>
+                      </p>
+                  </div>
+              </div>
+              <p style="margin-top: 10px;">
+                  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapse" role="button" aria-expanded="false" aria-controls="multiCollapse">Veja previsão das progressões</a>
+              </p>
+              <div class="row">
+                  <div class="col">
+                      <div class="collapse multi-collapse" id="multiCollapse">
+                          <div class="card card-body">
+                              <table>
+                                  @if (Model.NomeCarreira == "Técnico Administrativo em Educação")
+                                  {
+                                      foreach (var day in Model.progressaoPorMerito)
+                                      {
+
+                                          <tr>
+                                              <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", day))</td>
+                                          </tr>
+                                      }
+                                  }
+                                  else if (Model.NomeCarreira == "Magistério do Ensino Básico Técnico e Tecnológico")
+                                  {
+                                      foreach (var day in Model.progressaoFuncional)
+                                      {
+
+                                          <tr>
+                                              <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", day))</td>
+                                          </tr>
+                                      }
+                                  }
+                                  else
+                                  {
+                                      <tr>
+                                          <td>Sem progressao na carreira</td>
+                                      </tr>
+                                  }
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 </div>

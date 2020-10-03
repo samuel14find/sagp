@@ -1,0 +1,87 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="card border-success widget">
+        <div class="card-header text-white bg-success">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-user fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+
+                    <h3>Logado no sistema</h3>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xs-12 feature-request">
+                    <table class="table table-responsive list-view">
+                        <thead>
+                            <tr>
+                                <th>Email Registrado</th>
+                                <th>Data de Ingresso no Setor</th>
+                                <th>Logado como</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @{ var email = User.Identity.IsAuthenticated ? User.Claims.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value : "";}
+                                <td>@email</td>
+                                @{ var dataIngressoSetor = User.Identity.IsAuthenticated ? User.Claims.FirstOrDefault(c => c.Type == "DataIngressoSetor").Value : "";}
+                                <td>@dataIngressoSetor</td>
+                                @{var role = User.Identity.IsAuthenticated ? User.Claims.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role").Value : ""; }
+                                <td>@role</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card border-danger widget">
+        <div class="card-header text-white bg-danger">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-user-circle fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+
+                    <h3>Ainda não logado no sistema ?</h3>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xs-12 feature-request">
+                    <table class="table table-responsive list-view">
+                        <thead>
+                            <tr>
+                                <th>Email Registrado</th>
+                                <th>Data de Ingresso no Setor</th>
+                                <th>Logado como</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

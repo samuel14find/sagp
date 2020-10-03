@@ -10,7 +10,7 @@ namespace gestao.Data
         
         public IEnumerable<SelectListItem> GetCarreira()
         {
-            var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste6;Trusted_Connection=True; MultipleActiveResultSets=true";
+            var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true";
             var optionsBuilder = new DbContextOptionsBuilder<AppGestaoContext>();
             optionsBuilder.UseSqlServer(connectionstring);
             using (var _context = new AppGestaoContext(optionsBuilder.Options))

@@ -1,0 +1,14 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Email Confirmado!";
+}
+
+<h2>@ViewData["Title"]</h2>
+<div class="alert alert-success" role="alert">
+    <p>
+        Obrigado por confirmar seu Email. Agora você pode logar no sistema clicando 
+        <strong><a asp-area="Identity" asp-page="/Account/Login">Aqui</a></strong>.
+    </p>
+</div>
+

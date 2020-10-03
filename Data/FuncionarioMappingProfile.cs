@@ -20,8 +20,20 @@ namespace gestao.Data
             .ReverseMap();
 
             CreateMap<Ficha, FichaFuncionalViewModel>()
-            .ForMember(fich => fich.fichaid, ex =>ex.MapFrom(fich => fich.FichaId))
+            .ForMember(fich => fich.fichaid, ex => ex.MapFrom(fich => fich.FichaId))
             .ReverseMap();
+            //CreateMap<Tarefa, TarefaViewModel>()
+            //    .ForMember(dest => dest.Titulo, opts => opts.MapFrom(src => src.Titulo))
+            //    .ForMember(dest => dest.Descricao, opts => opts.MapFrom(src => src.Descricao))
+            //    .ForMember(dest => dest.DataLimite, opts => opts.MapFrom(src => src.DataLimite))
+            //    .ForMember(dest => dest.Feita, opts => opts.MapFrom(src => src.Feita))
+            //    .ForMember(dest => dest.Notas, opts => opts.MapFrom(src => src.Notas))
+            //    .ForMember(dest => dest.AtribuidoParaFuncionarioId, opts => opts.MapFrom(src => src.Funcionario))
+            //    .ForMember(dest => dest.AtribuidoParaMatriculaDisplay, opts => opts.MapFrom(src => src.Funcionario))
+            //    .ForMember(dest => dest.CategoriaId, opts => opts.MapFrom(src => src.CategoriaId));
+
+
+            //CreateMap<TarefaViewModel, Tarefa>();
         }
     }
 }

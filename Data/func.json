@@ -1,18 +1,292 @@
 [
-{"matricula":"1827333","nome":"Samuel Salvador Bicalho Pereira","cargo":"Assistente Administrativo","setor":"Gestão de Pessoas","email":"bicalho.sam@gmail.com","datanomeacao":"2010-10-28T00:00:00","dataposse":"2010-11-29T00:00:00","dataexercicio":"2010-12-15T00:00:00"},
-{"matricula":"0049739","nome":"Adairton Flavio do Rego Coutinho","cargo":"Auxiliar Rural","setor":"Fazenda","email":"adairtonflavio@outlook.com","datanomeacao":"1981-04-01T00:00:00","dataposse":"1948-03-15T00:00:00","dataexercicio":"1981-04-01T00:00:00"},
-{"matricula":"1002354","nome":"Adeliton da Fonseca de Oliveira","cargo":"Prof. Ens. Basico, Tec e Tecnologico","setor":"Ensino Medio","email":"adeliton.oliveira@ifmg.edu.br","datanomeacao":"2016-07-01T00:00:00","dataposse":"1988-03-30T00:00:00","dataexercicio":"2016-07-01T00:00:00"},
-{"matricula":"2106461","nome":"Adriano Geraldo da Silva","cargo":"Vigilante * Quadro de Func. CEFET","setor":"Portaria","email":"adriano.silva@ifmg.edu.br","datanomeacao":"1995-02-01T00:00:00","dataposse":"1966-07-21T00:00:00","dataexercicio":"1995-02-01T00:00:00"},
-{"matricula":"2322575","nome":"Alberto Valadares Neto","cargo":"Prof. Ens. Basico, Tec e Tecnologico","setor":"Licenciatura em Matemática","email":"alberto.valadares@ifmg.edu.br","datanomeacao":"2016-07-06T00:00:00","dataposse":"1983-06-16T00:00:00","dataexercicio":"2016-07-06T00:00:00"},
-{"matricula":"2901978","nome":"Alceste Metzker dos Santos Gloria","cargo":"Assistente em Administracao","setor":"Planejamento","email":"alceste.gloria@ifmg.edu.br","datanomeacao":"2011-11-28T00:00:00","dataposse":"1989-05-26T00:00:00","dataexercicio":"2011-11-28T00:00:00"},
-{"matricula":"2935460","nome":"Alisson Jose Eufrasio de Carvalho","cargo":"Prof. Ens. Basico, Tec e Tecnologico","setor":"Agricultura","email":"alisson.carvalho@ifmg.edu.br","datanomeacao":"2014-08-08T00:00:00","dataposse":"1986-01-11T00:00:00","dataexercicio":"2014-08-08T00:00:00"},
-{"matricula":"1528629","nome":"Ana Amelia de Souza","cargo":"Odontologo","setor":"Hambulatório","email":"ana.souza@ifmg.edu.br","datanomeacao":"2006-04-17T00:00:00","dataposse":"1979-11-01T00:00:00","dataexercicio":"2006-04-17T00:00:00"},
-{"matricula":"1650997","nome":"Ana Carolina Ferraro","cargo":"Prof. Ens. Basico, Tec e Tecnologico","setor":"Ensino Medio","email":"ana.ferraro@ifmg.edu.br","datanomeacao":"2008-08-01T00:00:00","dataposse":"1980-03-03T00:00:00","dataexercicio":"2008-08-01T00:00:00"},
-{"matricula":"3007807","nome":"Ana Paula Oliveira","cargo":"Auxiliar em Administracao","setor":"setor","email":"anapaula.oliveira@ifmg.edu.br","datanomeacao":"2018-01-18T00:00:00","dataposse":"1987-12-01T00:00:00","dataexercicio":"2018-01-18T00:00:00"},
-{"matricula":"1454700","nome":"Anderson Nascimento Oliveira","cargo":"Assist. em Administracao","setor":"setor","email":"anderson.oliveira@ifmg.edu.br","datanomeacao":"2004-06-01T00:00:00","dataposse":"1980-08-02T00:00:00","dataexercicio":"2004-06-01T00:00:00"},
-{"matricula":"2937304","nome":"Andre Geraldo da Costa Coelho","cargo":"Prof. Ens. Basico, Tec e Tecnologico","setor":"setor","email":"andre.coelho@ifnmg.edu.br","datanomeacao":"2019-06-27T00:00:00","dataposse":"1985-05-05T00:00:00","dataexercicio":"2019-06-27T00:00:00"},
-{"matricula":"1783905","nome":"Angela Maria Reis Pacheco Santos","cargo":"Tec. em Assuntos Educacionais","setor":"setor","email":"angela.santos@ifmg.edu.br","datanomeacao":"2010-05-12T00:00:00","dataposse":"1959-06-16T00:00:00","dataexercicio":"2010-05-12T00:00:00"},
-{"matricula":"1444764","nome":"Angela Rangel Ferreira Tesser","cargo":"Assist. em Administracao","setor":"setor","email":"angela.tesser@ifmg.edu.br","datanomeacao":"2004-03-01T00:00:00","dataposse":"1974-10-09T00:00:00","dataexercicio":"2004-03-01T00:00:00"},
-{"matricula":"0049784","nome":"Antonio Augusto Candido","cargo":"Porteiro","setor":"setor","email":"antonio.candido@ifmg.edu.br","datanomeacao":"1987-07-01T00:00:00","dataposse":"1961-06-09T00:00:00","dataexercicio":"1987-07-01T00:00:00"},
-{"matricula":"1904195","nome":"Antonio Celso Candido Moura","cargo":"Operador de Instalacao Mecanizada","setor":"setor","email":"antonio.moura@ifmg.edu.br","datanomeacao":"2011-12-05T00:00:00","dataposse":"1958-03-09T00:00:00","dataexercicio":"2011-12-05T00:00:00"}
+  {
+    "matricula": "1827333",
+    "nome": "Samuel Salvador Bicalho Pereira",
+    "cargo": "Assistente Administrativo",
+    "setor": "GEP",
+    "email": "samuel.bicalho@ufvjm.edu.br",
+    "datanomeacao": "2010-10-11T00:00:00",
+    "dataposse": "2010-11-24T00:00:00",
+    "dataexercicio": "2010-11-24T00:00:00"
+  },
+  {
+    "matricula": "0049739",
+    "nome": "Adairton Flavio do Rego Coutinho",
+    "cargo": "Auxiliar Rural",
+    "setor": "Vigilante",
+    "email": "adairtonflavio@outlook.com",
+    "datanomeacao": "1981-04-01T00:00:00",
+    "dataposse": "1981-04-01T00:00:00",
+    "dataexercicio": "1981-04-01T00:00:00"
+  },
+  {
+    "matricula": "1002354",
+    "nome": "Alberto Valadares Neto",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CEM",
+    "email": "alberto.valadares@ifmg.edu.br",
+    "datanomeacao": "2016-06-20T00:00:00",
+    "dataposse": "2016-06-20T00:00:00",
+    "dataexercicio": "2016-07-06T00:00:00"
+  },
+  {
+    "matricula": "1528629",
+    "nome": "Ana Amélia de Souza",
+    "cargo": "Odontóloga",
+    "setor": "AMB",
+    "email": "ana.souza@ifmg.edu.br",
+    "datanomeacao": "2006-03-13T00:00:00",
+    "dataposse": "2006-04-17T00:00:00",
+    "dataexercicio": "2006-04-30T00:00:00"
+  },
+  {
+    "matricula": "1650997",
+    "nome": "Ana Carolina Ferraro",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CBEF",
+    "email": "ana.ferraro@ifmg.edu.br",
+    "datanomeacao": "2007-11-16T00:00:00",
+    "dataposse": "2008-07-29T00:00:00",
+    "dataexercicio": "2008-08-01T00:00:00"
+  },
+  {
+    "matricula": "3007807",
+    "nome": "Ana Paula Oliveira",
+    "cargo": "Auxiliar em Administração",
+    "setor": "CPLAN",
+    "email": "anapaula.oliveira@ifmg.edu.br",
+    "datanomeacao": "2017-12-06T00:00:00",
+    "dataposse": "2018-01-08T00:00:00",
+    "dataexercicio": "2018-01-18T00:00:00"
+  },
+  {
+    "matricula": "1454700",
+    "nome": "Anderson Nascimento Oliveira",
+    "cargo": "Assistente em Administração",
+    "setor": "CPLAN",
+    "email": "anderson.oliveira@ifmg.edu.br",
+    "datanomeacao": "2004-05-24T00:00:00",
+    "dataposse": "2004-06-01T00:00:00",
+    "dataexercicio": "2004-06-01T00:00:00"
+  },
+  {
+    "matricula": "1977759",
+    "nome": "Bruno Oliveira Lafeta",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CBEF",
+    "email": "bruno.lafeta@ifmg.edu.br",
+    "datanomeacao": "2006-06-01T00:00:00",
+    "dataposse": "2013-04-19T00:00:00",
+    "dataexercicio": "2013-04-19T00:00:00"
+  },
+  {
+    "matricula": "1260730",
+    "nome": "Bruno Pellizzaro Dias Afonso",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CCBADM",
+    "email": "brunopdafonso@gmail.com",
+    "datanomeacao": "2012-12-28T00:00:00",
+    "dataposse": "2018-01-24T00:00:00",
+    "dataexercicio": "2018-01-24T00:00:00"
+  },
+  {
+    "matricula": "1612579",
+    "nome": "Bruno Rafael Camargos de Oliveira",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CEM",
+    "email": "bruno.oliveira@ifmg.edu.br",
+    "datanomeacao": "2008-10-08T00:00:00",
+    "dataposse": "2009-01-13T00:00:00",
+    "dataexercicio": "2009-01-13T00:00:00"
+  },
+  {
+    "matricula": "1667572",
+    "nome": "Cláudia Simony Mourão Pereira",
+    "cargo": "Pedagoga",
+    "setor": "DDE",
+    "email": "claudia.pereira@ifmg.edu.br",
+    "datanomeacao": "2007-10-31T00:00:00",
+    "dataposse": "2009-01-05T00:00:00",
+    "dataexercicio": "2009-01-05T00:00:00"
+  },
+  {
+    "matricula": "3159914",
+    "nome": "Débora Marques Ferreira Araújo",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CEM",
+    "email": "deboradmfa@gmail.com",
+    "datanomeacao": "2019-12-16T00:00:00",
+    "dataposse": "2019-12-16T00:00:00",
+    "dataexercicio": "2020-01-14T00:00:00"
+  },
+  {
+    "matricula": "1771410",
+    "nome": "Damião Noel Rocha",
+    "cargo": "Assistente em Administração",
+    "setor": "CPLAN",
+    "email": "damiao.rocha@ifmg.edu.br",
+    "datanomeacao": "2010-03-05T00:00:00",
+    "dataposse": "2010-03-16T00:00:00",
+    "dataexercicio": "2010-03-16T00:00:00"
+  },
+  {
+    "matricula": "3063447",
+    "nome": "Denise Felix Quintão",
+    "cargo": "Prof. Ens. Basico, Tec e Tecnologico",
+    "setor": "CTIND",
+    "email": "denise.felix@ifmg.edu.br",
+    "datanomeacao": "2018-07-26T00:00:00",
+    "dataposse": "2018-08-09T00:00:00",
+    "dataexercicio": "2018-08-13T00:00:00"
+  },
+  {
+    "matricula": "1729018",
+    "nome": "Douglas de Miranda Barbosa ",
+    "cargo": "Assistente de Alunos",
+    "setor": "CGAE",
+    "email": "douglas.barbosa@ifmg.edu.br",
+    "datanomeacao": "2009-09-03T00:00:00",
+    "dataposse": "2009-10-02T00:00:00",
+    "dataexercicio": "2009-10-02T00:00:00"
+  },
+  {
+    "matricula": "1446140",
+    "nome": "Erika Euzébio Oliveira",
+    "cargo": "Auxiliar de Enfermagem",
+    "setor": "AMB",
+    "email": "erika.oliveira@ifmg.edu.br",
+    "datanomeacao": "2004-03-01T00:00:00",
+    "dataposse": "2004-03-15T00:00:00",
+    "dataexercicio": "2004-03-15T00:00:00"
+  },
+  {
+    "matricula": "2401586",
+    "nome": "Ezilene Pereira da Costa ",
+    "cargo": "Assistente de Alunos",
+    "setor": "CGAE",
+    "email": "ezzilene@hotmail.com",
+    "datanomeacao": "2017-05-16T00:00:00",
+    "dataposse": "2017-06-19T00:00:00",
+    "dataexercicio": "2017-06-19T00:00:00"
+  },
+  {
+    "matricula": "1070178",
+    "nome": "Fernanda de Lima Barroso",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CTIA",
+    "email": "fernanda.barroso@ifmg.edu.br",
+    "datanomeacao": "2016-06-17T00:00:00",
+    "dataposse": "2016-07-11T00:00:00",
+    "dataexercicio": "2016-07-11T00:00:00"
+  },
+  {
+    "matricula": "1298361",
+    "nome": "Fernando da Costa Pereira",
+    "cargo": "Assistente em Administração",
+    "setor": "CRE",
+    "email": "fernando.pereira@ifmg.edu.br",
+    "datanomeacao": "2008-12-29T00:00:00",
+    "dataposse": "2009-01-12T00:00:00",
+    "dataexercicio": "2009-01-12T00:00:00"
+  },
+  {
+    "matricula": "1762166",
+    "nome": "Fernanda Efrem Natividade Ferreira",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CEM",
+    "email": "fernanda.ferreira@ifmg.edu.br",
+    "datanomeacao": "2009-12-30T00:00:00",
+    "dataposse": "2009-12-30T00:00:00",
+    "dataexercicio": "2010-02-01T00:00:00"
+  },
+  {
+    "matricula": "2016897",
+    "nome": "João Paulo Lemos ",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CCBA",
+    "email": "joao.lemos@ifmg.edu.br",
+    "datanomeacao": "2013-03-27T00:00:00",
+    "dataposse": "2013-04-12T00:00:00",
+    "dataexercicio": "2013-04-12T00:00:00"
+  },
+  {
+    "matricula": "1812386",
+    "nome": "Karina Dutra de Carvalho Lemos",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CBSI",
+    "email": "karina.dutra@ifmg.edu.br",
+    "datanomeacao": "2010-08-04T00:00:00",
+    "dataposse": "2010-09-08T00:00:00",
+    "dataexercicio": "2010-09-08T00:00:00"
+  },
+  {
+    "matricula": "1810338",
+    "nome": "Kely Meiry Damasceno ",
+    "cargo": "Assistente Social",
+    "setor": "CGAE",
+    "email": "kely.damasceno@ifmg.edu.br",
+    "datanomeacao": "2010-08-06T00:00:00",
+    "dataposse": "2010-08-30T00:00:00",
+    "dataexercicio": "2010-08-30T00:00:00"
+  },
+  {
+    "matricula": "2390332",
+    "nome": "Mateus Marques Bueno",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CCBA",
+    "email": "mateus.bueno@ifmg.edu.br",
+    "datanomeacao": "2017-03-06T00:00:00",
+    "dataposse": "2017-04-24T00:00:00",
+    "dataexercicio": "2017-04-24T00:00:00"
+  },
+  {
+    "matricula": "1783709",
+    "nome": "Paulo Sérgio Pereira",
+    "cargo": "Assistente em Administração",
+    "setor": "CRE",
+    "email": "paulo.sergio@ifmg.edu.br",
+    "datanomeacao": "2010-04-29T00:00:00",
+    "dataposse": "2010-05-10T00:00:00",
+    "dataexercicio": "2010-05-10T00:00:00"
+  },
+  {
+    "matricula": "1113481",
+    "nome": "Pedro Henrique Nunes Coelho",
+    "cargo": "Médico",
+    "setor": "AMB",
+    "email": "pedro.coelho@ifmg.edu.br",
+    "datanomeacao": "1994-12-26T00:00:00",
+    "dataposse": "1995-03-24T00:00:00",
+    "dataexercicio": "1995-03-24T00:00:00"
+  },
+  {
+    "matricula": "3154364",
+    "nome": "Rafael Sodré de Castro",
+    "cargo": "Prof. Ens. Básico, Téc e Tecnológico",
+    "setor": "CEM",
+    "email": "rafaelsodredecastro@gmail.com",
+    "datanomeacao": "2019-10-07T00:00:00",
+    "dataposse": "2019-10-07T00:00:00",
+    "dataexercicio": "2019-11-01T00:00:00"
+  },
+  {
+    "matricula": "1848113",
+    "nome": "Gerson Gabriel Moura Gomes",
+    "cargo": "Técnico de Tecnologia da Informação",
+    "setor": "CTI",
+    "email": "ger-gabriel@hotmail.com",
+    "datanomeacao": "2011-02-02T00:00:00",
+    "dataposse": "2011-02-21T00:00:00",
+    "dataexercicio": "2011-02-28T00:00:00"
+  },
+  {
+    "matricula": "1802291",
+    "nome": "Joana D'Arc Teixeira",
+    "cargo": "Técnico de Tecnologia da Informação",
+    "setor": "CRE",
+    "email": "joana.teixeira@ifmg.edu.br",
+    "datanomeacao": "2010-07-01T00:00:00",
+    "dataposse": "2010-07-01T00:00:00",
+    "dataexercicio": "2010-08-02T00:00:00"
+  }
 ]

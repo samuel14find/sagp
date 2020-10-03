@@ -16,7 +16,6 @@ namespace gestao.Data.Entities
         public string NomeCarreira { get; set; }
 
         public IEnumerable<ProgressaoCarreira> ProgressoesCarreira { get; set; }
-
-        
+  
     }
 }

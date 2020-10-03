@@ -15,7 +15,7 @@ USANDO ANGULAR
         <div class="card col-md-12">
            <div class="pd-15">
               <h1 class="title">@ViewBag.Title</h1>
-              <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sum dolor sit amet<br/> sed do eiusmod tempor incididunt ut</p>
+              <p class="subtitle">Relação de funcionários cadastrados</p>
               
               <div class="row">
                 <div class="col-md-12">
@@ -37,23 +37,30 @@ USANDO ANGULAR
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-style table-sm">
                             <thead>
-                              <tr>
-                                <th class="text-center">Matricula</th>
-                                <th>Nome</th>
-                                <th>Setor</th>
-                              </tr>
+                                <tr>
+                                    <th class="text-center">Matricula</th>
+                                    <th>Nome</th>
+                                    <th>Setor</th>
+                                    
+                                </tr>
                             </thead>
                             <tbody>
                               @foreach (var funcionario in Model)
                               {   
-                              <tr>
-                                <th class="text-center">@funcionario.matricula</th>
-                                <td><a asp-controller="App" asp-action="Detalhe" asp-route-funcionarioId="@funcionario.FuncionarioId">@funcionario.nome</a></td>
-                                <td>@funcionario.setor</td>
-                                <td>
-                                  <p class="button"><a class="btn btn-primary" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@funcionario.FuncionarioId">Adicionar Ficha</a></p>
-                                </td>
-                              </tr> 
+                                <tr>
+                                    <th class="text-center">@funcionario.matricula</th>
+                                    <td><a asp-controller="App" asp-action="Detalhe" asp-route-funcionarioId="@funcionario.FuncionarioId">@funcionario.nome</a></td>
+                                    <td>@funcionario.setor</td>
+                                    <td>
+                                        <p class="button"><a class="btn btn-primary" asp-controller="CarrinhoFicha" asp-action="AdicionarFuncionarioNoCarrinhoFicha" asp-route-funcionarioId="@funcionario.FuncionarioId">Adicionar Ficha</a></p>
+                                    </td>
+                                    <td>
+                                        <p class="button"><a class="btn btn-grey" asp-controller="App" asp-action="EditarFuncionario" asp-route-Id="@funcionario.FuncionarioId">Editar</a></p>
+                                    </td>
+                                    <td>
+                                        <p class="button"><a class="btn btn-danger" asp-controller="App" asp-action="DeletarFuncionario" asp-route-Id="@funcionario.FuncionarioId">Deletar</a></p>
+                                    </td>
+                                </tr> 
                               }
                             </tbody>
                           </table>

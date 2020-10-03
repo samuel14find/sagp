@@ -1,0 +1,48 @@
+﻿@page
+@model ExternalLoginModel
+@{ 
+    var roles = (List<IdentityRole>)ViewData["roles"];
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>Login com a conta institucional do IFMG (@Model.LoginProvider)</h4>
+<hr />
+<p class="text-info">
+    Você conseguiu se autenticar usando o login institucional(<strong>@Model.LoginProvider</strong>).
+    Favor confirmar algumas informações abaixo e clicar em Registrar
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.NomeCompleto"></label>
+                <input asp-for="Input.NomeCompleto" class="form-control" />
+                <span asp-validation-for="Input.NomeCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.DataIngressoSetor"></label>
+                <input asp-for="Input.DataIngressoSetor" class="form-control" />
+                <span asp-validation-for="Input.DataIngressoSetor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Role"></label>
+                <select asp-for="Input.Role" class="form-control" asp-items='new SelectList(roles,"Id","Name")'>
+                </select>
+                <span asp-validation-for="Input.Role" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-red btn-sm">Registrar</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

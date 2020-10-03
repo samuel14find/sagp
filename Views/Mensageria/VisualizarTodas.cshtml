@@ -1,0 +1,38 @@
+﻿@*@model List<gestao.Data.Entities.Mensagem>
+@{
+    ViewData["Title"] = "VisualizarTodas";
+}
+
+<div class="row">
+    <div class="col-lm-12">
+        <h1 class="page-header">
+            <small>Listed below are feedback messages we have received from customers.</small>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Assunto</th>
+                    <th>Conteúdo</th>
+                    <td>Autor</td>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mensagem in Model)
+                {
+                    <tr>
+                        <td>@mensagem.Assunto</td> 
+                        <td>@mensagem.Conteudo</td>
+                        <td>@mensagem.Autor</td>
+                        <td>@mensagem.Data</td>
+                        <td>@Html.ActionLink("Retornar","Retornar", "Mensageria", new { id = mensagem.MensagemThreadId}, new { @class="btn btn-primary"} )</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>*@

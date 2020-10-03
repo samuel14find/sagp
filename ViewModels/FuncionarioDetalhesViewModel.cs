@@ -32,6 +32,8 @@ namespace gestao.ViewModels
         public Guid IdentificadorFuncionarioCarreira { get; set; }
         public string NomeCarreira { get; set; }
         public string NomeProgressao { get; set; }
+        public IEnumerable<DateTimeOffset> progressaoPorMerito { get; set; }
+        public IEnumerable<DateTimeOffset> progressaoFuncional { get; set; }
 
 
     }
