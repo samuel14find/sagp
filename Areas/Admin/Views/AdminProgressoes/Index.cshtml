@@ -1,41 +1,68 @@
 ﻿@model IEnumerable<gestao.Data.Entities.ProgressaoCarreira>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeProgressao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Carreira)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeProgressao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carreira.Iso5)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProgressaoCode">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProgressaoCode">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProgressaoCode">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container-fluid">
+    <div class="rown">
+        <div class="card col-md-12">
+            <div class="pd-15">
+                <h1 class="title">Relação das progressões cadastradas</h1>
+                <p>Observar que cada progressão está vinculada à uma carreira. Ao cadastrar uma 
+                nova progressão, observer normas vigentes.</p>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="form-row" asp-action="Index" method="get">
+                                    <div class="col-md-4 mb-3">
+                                        <label>Filtrar por:</label>
+                                        <input type="text" name="searchString" value="@ViewData["searchString"]" />
+                                        <input type="submit" value="Filtrar" class="btn btn-red btn-sm" />
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label><a class="btn btn-red btn-sm" asp-action="Index"> Limpar Pesquisa</a></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label><a class="btn btn-green btn-sm"  asp-action="Create"> Cadastrar Nova Progressão</a></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-style table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">@Html.DisplayNameFor(model => model.NomeProgressao)</th>
+                                        <th> @Html.DisplayNameFor(model => model.Carreira)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NomeProgressao)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Carreira.Iso5)
+                                        </td>
+                                        <td>
+                                            <p class="button"><a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.ProgressaoCode">Editar</a></p>                                           
+                                        </td>
+                                        <td>
+                                            <p class="button"><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ProgressaoCode">Delete</a></p>                                     
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation">
+                                <!--Navegação aqui-->
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
