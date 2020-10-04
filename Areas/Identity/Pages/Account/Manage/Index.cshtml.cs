@@ -126,7 +126,7 @@ namespace gestao.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Seus dados foram atualizados com sucesso";
             return RedirectToPage();
         }
 
@@ -154,10 +154,10 @@ namespace gestao.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme seu email",
+                $"Por favor, confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Verificação de email enviada. Favor verificar lá na sua conta de email";
             return RedirectToPage();
         }
     }
