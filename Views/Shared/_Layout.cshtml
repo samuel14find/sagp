@@ -36,34 +36,24 @@
 
     <link href="~/node_modules/jquery-ui-1.12.1/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="~/node_modules/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
-    <title>Dashboard Gestão</title>
+    <title>SAGP</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
         <div id="sidebar-wrapper">
-            <div class="sidebar-heading">Dashboard Gestão</div>
+            <div class="sidebar-heading">Dashboard - SAGP</div>
             <div class="list-group list-group-flush">
                 @if (User.IsInRole("Chefe do Setor"))
                 {
                     <a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="list-group-item list-group-item-action"><i class="fa fa-exchange" aria-hidden="true"></i>Administração</a>
                 }
-                <a asp-controller="App" asp-action="Index" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                <a asp-controller="App" asp-action="Index" class="list-group-item list-group-item-action menu-active"><i class="fa fa-home"></i>Home</a>
                 <a asp-controller="App" asp-action="Cadastro" class="list-group-item list-group-item-action"><i class="fa fa-id-badge" aria-hidden="true"></i>Cadastrar</a>
                 <a asp-controller="App" asp-action="ListarFuncionarios" class="list-group-item list-group-item-action"><i class="fa fa-users" aria-hidden="true"></i>Listar Funcionarios</a>
                 <a asp-controller="FuncionarioCarreira" asp-action="Create" class="list-group-item list-group-item-action"><i class="fa fa-road" aria-hidden="true"></i>Carreiras</a>
                 <a asp-controller="Tarefas" asp-action="CriarEditar" class="list-group-item list-group-item-action"><i class="fa fa-cogs" aria-hidden="true"></i>Criar Tarefa</a>
                 <a asp-controller="Tarefas" asp-action="VisualizarTodas" class="list-group-item list-group-item-action"><i class="fa fa-list" aria-hidden="true"></i>Ver Tarefas</a>
-
-                <!--
-    <a href="tables.html" class="list-group-item list-group-item-action"><i class="fa fa-table" aria-hidden="true"></i>Tables</a>
-    <a href="buttons.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Buttons</a>
-    <a href="icons.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Icons</a>
-    <a href="typography.html" class="list-group-item list-group-item-action"><i class="fa fa-text-width" aria-hidden="true"></i>Typography</a>
-    <a href="modals.html" class="list-group-item list-group-item-action"><i class="fa fa-sticky-note-o" aria-hidden="true"></i>Modals</a>
-    <a href="forms.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Forms</a>
-    <a href="alerts.html" class="list-group-item list-group-item-action"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>Alerts</a>
-    <a href="breadcrumb.html" class="list-group-item list-group-item-action"><i class="fa fa-cube" aria-hidden="true"></i>Breadcrumb</a>-->
             </div>
         </div>
         <div id="page-content-wrapper">
@@ -83,10 +73,6 @@
                 </div>
             </nav>
             <!-- Renderiza a Index Aqui -->
-            @if (TempData["Status"] != null)
-            {
-                <div class="alert-info alert">@TempData["Status"]</div>
-            }
             @RenderBody()
         </div>
     </div>
