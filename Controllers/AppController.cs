@@ -47,7 +47,7 @@ namespace gestao.Controllers
         [Authorize(Roles = "Chefe do Setor, Assistente do Setor, Geral")]
         public IActionResult Index()
         {
-            ViewBag.Title ="Sistema auxiliar do Gestão de Pessoas";
+            ViewBag.Title ="Sistema de Apoio do Gestão de Pessoas - SAGP";
             var home = new HomePageViewModel()
             {
                Tarefas = _appGestaoContext.Tarefas.OrderByDescending(x => x.DataCriacao).Take(5)
