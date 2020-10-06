@@ -41,6 +41,7 @@ namespace gestao
                 cfg.UseSqlServer(_config.GetConnectionString("StringConexaoBancoGestao"));
 
             });
+            services.BuildServiceProvider().GetService<AppGestaoContext>().Database.Migrate();
             //  Comentarios
             // Aqui trago a funcionalidade de trabalhar com altenticação. 
             // Falo aqui para usar o Entity Framework para armazenar os dados. 
@@ -89,7 +90,7 @@ namespace gestao
 
             services.AddMemoryCache();
             services.AddSession();
-            services.AddTransient<IMailService, MockMailService>();
+            
 
             // Com esse serviço eu pego o carrinho da section.
             // Temos aqui um objeto criado para cada requisição. Se duas pessoas solicitarem 
