@@ -287,7 +287,6 @@ __pycache__/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,aspnetcore
 # Ignorar arquivos instalados no node_modules
-node_modules/*
 Data/Migrations/*
 Migrations/*
 appsettings.json
