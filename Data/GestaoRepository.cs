@@ -286,36 +286,6 @@ namespace gestao.Data
 
                       };
 
-
-
-
-            //var q_2 = from f in _context.FichaDetalhes
-            //          join fi in _context.Funcionarios on f.FuncionarioId equals fi.FuncionarioId
-            //          join fich in _context.Fichas on f.FichaId equals fich.FichaId into gj
-            //          select new { Nome = f.Funcionario.nome, Fichas = gj };
-
-            //var q_2 = from f in _context.FichaDetalhes
-            //          join fi in _context.Fichas on f.FichaId equals fi.FichaId into gj
-            //          join fu in _context.Funcionarios on f.FuncionarioId equals fu.FuncionarioId
-            //          where
-            //          select new
-            //          {
-            //              funcionario = f.Funcionario.nome,
-            //              fichas = gj
-            //          };
-
-            //var q_2 = from f in _context.FichaDetalhes
-            //          join ficha in _context.Fichas on f.FichaId equals ficha.FichaId into gj
-            //          select new { Nome = f.Funcionario.nome, Fichas = gj };
-
-            //var display = from ti in q_1
-            //             group ti by ti.fichaList into tiGroup
-            //             select new
-            //             {
-            //                 fichaList = tiGroup.Key,
-            //                 count = tiGroup.Count()
-            //             };
-
             return q_2;
         }
 
