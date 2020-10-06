@@ -8,6 +8,12 @@ namespace gestao.Data
 {
     public class ProgressoesRepository: IProgressoesRepository
     {
+        private readonly AppGestaoContext _context;
+
+        public ProgressoesRepository(AppGestaoContext context)
+        {
+            _context = context;
+        }
 
         public IEnumerable<SelectListItem> GetProgressoes()
         {
@@ -26,12 +32,11 @@ namespace gestao.Data
         {
             if(!String.IsNullOrWhiteSpace(iso5))
             {
-                 var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true";
-                  var optionsBuilder = new DbContextOptionsBuilder<AppGestaoContext>();
-                  optionsBuilder.UseSqlServer(connectionstring);
-                using (var _context = new AppGestaoContext(optionsBuilder.Options))
-                {
-
+                 //var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true";
+                 //var optionsBuilder = new DbContextOptionsBuilder<AppGestaoContext>();
+                 //optionsBuilder.UseSqlServer(connectionstring);
+                 //using (var _context = new AppGestaoContext(optionsBuilder.Options))
+                
                     IEnumerable<SelectListItem> progressoes = _context.Progressoes.AsNoTracking()
                     .OrderBy(n => n.NomeProgressao)
                     .Where(n => n.Iso5 == iso5)
@@ -40,7 +45,7 @@ namespace gestao.Data
                         Text = n.NomeProgressao
                     }).ToList();
                     return new SelectList(progressoes, "Value", "Text");
-                }
+                
             }
             return null;
         }
