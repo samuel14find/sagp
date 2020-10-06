@@ -20,7 +20,7 @@ namespace gestao.Controllers
    
     public class AppController : Controller
     {
-        private readonly IMailService _mailService;
+        
         private readonly IRepository _context;
         private readonly IFuncionarioRepository _ctx;
         private readonly AppGestaoContext _appGestaoContext;
@@ -30,7 +30,7 @@ namespace gestao.Controllers
 
         private ISession _session => _httpContextAccessor.HttpContext.Session;
 
-        public AppController(IMailService mailService, IRepository context,
+        public AppController( IRepository context,
                             IFuncionarioRepository ctx, AppGestaoContext appGestaoContext,
                             IHttpContextAccessor httpContextAccessor,
                             ILogger<AppController> logger
@@ -41,7 +41,7 @@ namespace gestao.Controllers
             _appGestaoContext = appGestaoContext;
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
-            this._mailService = mailService;
+            
 
         }
         [Authorize(Roles = "Chefe do Setor, Assistente do Setor, Geral")]
