@@ -87,11 +87,7 @@ namespace gestao.Data
                 Iso5 = "Prof",
                 NomeCarreira = "Magistério do Ensino Básico Técnico e Tecnológico"
             });
-            modelBuilder.Entity<Carreira>().HasData(new Carreira
-            {
-                Iso5 = "Terc",
-                NomeCarreira = "Terceirizado"
-            });
+           
             modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
             {
                 ProgressaoCode = "DI01",
@@ -188,7 +184,7 @@ namespace gestao.Data
                 NomeProgressao = "DI16-Administrativa",
                 Iso5 = "Admin"
             });
-            //----DII
+            
 
             modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
             {
@@ -286,7 +282,7 @@ namespace gestao.Data
                 NomeProgressao = "DII16-Administrativa",
                 Iso5 = "Admin"
             });
-            // DIII
+            
             modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
             {
                 ProgressaoCode = "DIII01",
@@ -383,7 +379,7 @@ namespace gestao.Data
                 NomeProgressao = "DIII16-Administrativa",
                 Iso5 = "Admin"
             });
-            //DIV
+            
             modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
             {
                 ProgressaoCode = "DIV01",
@@ -481,7 +477,7 @@ namespace gestao.Data
                 Iso5 = "Admin"
             });
 
-            //DI1 Prof
+            
             modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
             {
                 ProgressaoCode = "DI1",
@@ -565,6 +561,400 @@ namespace gestao.Data
                 ProgressaoCode = "Sempro",
                 NomeProgressao = "Sem progressao",
                 Iso5 = "Terc"
+            });
+
+            modelBuilder.Entity<Carreira>().HasData(new Carreira
+            {
+                Iso5 = "Terc",
+                NomeCarreira = "Terceirizado"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI01",
+                NomeProgressao = "EI01-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI02",
+                NomeProgressao = "EI02-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI03",
+                NomeProgressao = "EI03-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI04",
+                NomeProgressao = "EI04-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI05",
+                NomeProgressao = "EI05-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI06",
+                NomeProgressao = "EI06-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI07",
+                NomeProgressao = "EI07-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI08",
+                NomeProgressao = "EI08-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI09",
+                NomeProgressao = "EI09-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI10",
+                NomeProgressao = "EI10-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI11",
+                NomeProgressao = "EI11-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI12",
+                NomeProgressao = "EI12-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI13",
+                NomeProgressao = "EI13-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI14",
+                NomeProgressao = "EI14-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI15",
+                NomeProgressao = "EI15-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EI16",
+                NomeProgressao = "EI16-Administrativa",
+                Iso5 = "Admin"
+            });
+         
+
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII01",
+                NomeProgressao = "EII01-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII02",
+                NomeProgressao = "EII02-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII03",
+                NomeProgressao = "EII03-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII04",
+                NomeProgressao = "EII04-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII05",
+                NomeProgressao = "EII05-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII06",
+                NomeProgressao = "EII06-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII07",
+                NomeProgressao = "EII07-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII08",
+                NomeProgressao = "EII08-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII09",
+                NomeProgressao = "EII09-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII10",
+                NomeProgressao = "EII10-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII11",
+                NomeProgressao = "EII11-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII12",
+                NomeProgressao = "EII12-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII13",
+                NomeProgressao = "EII13-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII14",
+                NomeProgressao = "EII14-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII15",
+                NomeProgressao = "EII15-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EII16",
+                NomeProgressao = "EII16-Administrativa",
+                Iso5 = "Admin"
+            });
+            
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII01",
+                NomeProgressao = "EII01-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII02",
+                NomeProgressao = "EII02-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII03",
+                NomeProgressao = "EII03-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII04",
+                NomeProgressao = "EII04-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII05",
+                NomeProgressao = "EIII05-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII06",
+                NomeProgressao = "EIII06-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII07",
+                NomeProgressao = "EIII07-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII08",
+                NomeProgressao = "EIII08-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII09",
+                NomeProgressao = "EIII09-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII10",
+                NomeProgressao = "EIII10-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII11",
+                NomeProgressao = "EIII11-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII12",
+                NomeProgressao = "EIII12-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII13",
+                NomeProgressao = "EIII13-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII14",
+                NomeProgressao = "EIII14-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII15",
+                NomeProgressao = "EIII15-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIII16",
+                NomeProgressao = "EIII16-Administrativa",
+                Iso5 = "Admin"
+            });
+         
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV01",
+                NomeProgressao = "EIV01-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV02",
+                NomeProgressao = "EIV02-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV03",
+                NomeProgressao = "EIV03-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV04",
+                NomeProgressao = "EIV04-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV05",
+                NomeProgressao = "EIV05-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV06",
+                NomeProgressao = "EIV06-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV07",
+                NomeProgressao = "EIV07-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV08",
+                NomeProgressao = "EIV08-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV09",
+                NomeProgressao = "EIV09-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV10",
+                NomeProgressao = "EIV10-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV11",
+                NomeProgressao = "EIV11-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV12",
+                NomeProgressao = "EIV12-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV13",
+                NomeProgressao = "EIV13-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV14",
+                NomeProgressao = "EIV14-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV15",
+                NomeProgressao = "EIV15-Administrativa",
+                Iso5 = "Admin"
+            });
+            modelBuilder.Entity<ProgressaoCarreira>().HasData(new ProgressaoCarreira
+            {
+                ProgressaoCode = "EIV16",
+                NomeProgressao = "EIV16-Administrativa",
+                Iso5 = "Admin"
             });
 
         }
