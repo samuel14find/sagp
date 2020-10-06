@@ -48,7 +48,7 @@ namespace gestao
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(SetupConfiguration)
+                //.ConfigureAppConfiguration(SetupConfiguration)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     
@@ -57,13 +57,15 @@ namespace gestao
         //  Comentarios
         // Aqui vamos criar um arquivo de configuração. Com isso ganhamos a habilidade 
         // de criar outros aquivos de configuração, como um XML se o ambiente onde a 
-        // aplicação for hospedada solicitar. 
-        private static void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
-        {
-            //Remove opcoes de configuração padrão
-            builder.Sources.Clear();
-            builder.AddJsonFile("config.json", false, true)
-                   .AddEnvironmentVariables();
-        }
+        // aplicação for hospedada solicitar. PROBLEMA AO COLOCAR PRODUÇÂO
+        //private static void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
+        //{
+        //    //Remove opcoes de configuração padrão
+        //    builder.Sources.Clear();
+        //    builder.AddJsonFile("config.Development.json", false, true)
+        //           .AddJsonFile("config.Production.json", false, true)
+        //           .AddEnvironmentVariables();
+        //}
     }
 }
+
