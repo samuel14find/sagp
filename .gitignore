@@ -290,3 +290,5 @@ __pycache__/
 node_modules/*
 Data/Migrations/*
 Migrations/*
+appsettings.json
+appsettings.Production.json
