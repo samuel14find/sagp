@@ -25,37 +25,20 @@ namespace gestao.Controllers
     public class FuncionarioCarreiraController : Controller
     {
         private readonly IFuncionarioRepository _repo;
+        private readonly IProgressoesRepository _progre;
         private readonly AppGestaoContext _context;
         private readonly ILogger<FuncionarioCarreiraController> _logger;
 
         public FuncionarioCarreiraController(IFuncionarioRepository repo,
+                                             IProgressoesRepository progre,
                                              AppGestaoContext context,
                                              ILogger<FuncionarioCarreiraController> logger)
         {
             this._context = context;
             _logger = logger;
             this._repo = repo;
-
+            _progre = progre;
         }
-        // public IActionResult ListaFuncionarioAdmin()
-        // {
-        //     // var funcionarios = _context.GetFuncionarioAdm();
-        //     // return View(funcionarios);
-        //     ViewBag.Title = "Lista dos funcionários administrativos";
-        //     var listaFuncionarioViewModel = new ListaFuncAdminViewModel();
-        //     listaFuncionarioViewModel.Funcionarios = _context.GetFuncionarioAdm();
-        //     // listaFuncionarioViewModel.NivelCapacitacao = "1";
-        //     // listaFuncionarioViewModel.NivelClassificacao = "D";
-        //     // listaFuncionarioViewModel.NivelProgressao = "01";
-        //     return View(listaFuncionarioViewModel);
-
-        // }
-
-        // public IActionResult ListaFuncionarioProf()
-        // {
-        //     var funcionarios = _context.GetFuncionarioProf();
-        //     return View (funcionarios);
-        // }
 
         [Authorize]
         public async Task<IActionResult> Index(string porCarreira, string sortOrder, string searchString, string currentFilter, int? pageNumber)
@@ -164,8 +147,8 @@ namespace gestao.Controllers
         {
             if (!(string.IsNullOrWhiteSpace(iso5) && iso5.Length == 5)) // && iso5.Length == 5
             {
-                var repo = new ProgressoesRepository();
-                IEnumerable<SelectListItem> progressoes = repo.GetProgressoesComCarreira(iso5);
+                
+                IEnumerable<SelectListItem> progressoes = _progre.GetProgressoesComCarreira(iso5);
                 return Json(progressoes);
             }
             return null;
