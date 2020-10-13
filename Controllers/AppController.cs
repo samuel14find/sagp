@@ -289,20 +289,6 @@ namespace gestao.Controllers
             return PartialView();
         }
 
-        //[HttpPost]
-        //public IActionResult Sugestoes(string mensagem)
-        //{
-        //    if (!string.IsNullOrWhiteSpace(mensagem))
-        //    {
-        //        TempData["Status"] = "Sua mensagem foi submetida";
-        //    }
-        //    else
-        //    {
-        //        TempData["Status"] = "Sua mensagem não foi submetida";
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
 
         private bool FuncionarioExists(int id)
         { 
