@@ -3,59 +3,11 @@
     ViewData["Title"] = "VisualizarTodas";
 }
 
-@*<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">
-            Tarefas do Gestão de Pessoas<br />
-            <small>Abaixo listamos as tarefas atribuída ao pessoal lotado no gestão de pessoas.</small>
-        </h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-style table-sm">
-                <thead>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Descricao</th>
-                        <th>Data Limite</th>
-                        <th>Realizada</th>
-                        <th>Atribuido</th>
-                        <th>Detalhes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var tarefa in Model)
-                    {
-                        <tr>
-                            <td>@tarefa.Titulo</td>
-                            <td>@tarefa.Descricao</td>
-                            <td>@tarefa.DataLimite</td>
-                            @if (@tarefa.Feita)
-                            {
-                                <td>Sim</td>
-                            }
-                            else
-                            {
-                                <td>Nao</td>
-                            }
-                            <td>@tarefa.Funcionario</td>
-
-                            <td>@Html.ActionLink("Editar", "CriarEditar", "Tarefas", new { Id = tarefa.Id }, new { @class = "btn btn-primary" })</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>*@
-
 <div class="container-fluid">
     <div class="row">
         <div class="card col-md-12">
             <div class="pd-15">
-                <h1>Tarefas Gestão de Pessoas</h1>
+                <h1>Tarefas do Gestão de Pessoas</h1>
                 <p class="subtitle">
                     Abaixo listamos as tarefas atribuída ao pessoal lotado no gestão de pessoas. 
                     Lembramos que a própria equipe é a responsável pelas atribuições.
@@ -96,7 +48,7 @@
                                             <td>@tarefa.Titulo</td>
                                             <td>@tarefa.Descricao</td>
                                             <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy}", tarefa.DataCriacao))</td>
-                                            <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy HH:mm}", tarefa.DataLimite))</td>
+                                            <td>@Convert.ToString(string.Format("{0:dd/MM/yyyy hh:mm}", tarefa.DataLimite))</td>
                                             @if (@tarefa.Feita)
                                             {
                                                 <td>Sim</td>
