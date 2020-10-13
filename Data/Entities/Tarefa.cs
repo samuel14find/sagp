@@ -23,10 +23,10 @@ namespace gestao.Data.Entities
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Informe a data limite para fazer a tarefa")]
-        [Display(Name = "Data/Hora Limite para Fazer a Tarefa no no formato dd/mm/aaaa hh:mm     ")]
+        [Display(Name = "Data/Hora Limite para Fazer a Tarefa no no formato dd/mm/aaaa hh:mm ")]
         [DataType(DataType.DateTime)]
         [ValidaDataTarefa(ErrorMessage = "Data incorreta. Colocar data no futuro")]
-        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy HH:mm}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
         public DateTimeOffset DataLimite { get; set; }
 
 
