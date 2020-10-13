@@ -40,7 +40,7 @@ namespace gestao.Controllers
             _progre = progre;
         }
 
-        [Authorize]
+       
         public async Task<IActionResult> Index(string porCarreira, string sortOrder, string searchString, string currentFilter, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
@@ -155,7 +155,7 @@ namespace gestao.Controllers
         }
 
         // Get: FuncionarioCarreira/Create
-        [Authorize]
+       
         public ActionResult Create()
         {
 
@@ -192,7 +192,7 @@ namespace gestao.Controllers
             return View("Error", model);
         }
 
-        public async Task<IActionResult> Delete(Guid? Id)
+        public async Task<IActionResult> Delete(int? Id)
         {
             if(Id == null)
             {
@@ -209,7 +209,7 @@ namespace gestao.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(Guid Id)
+        public async Task<IActionResult> DeleteConfirmed(int Id)
         {
             var carreira = await _context.FuncionariosCarreira.FindAsync(Id);
             _context.FuncionariosCarreira.Remove(carreira);
