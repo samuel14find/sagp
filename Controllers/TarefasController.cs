@@ -138,20 +138,5 @@ namespace gestao.Controllers
                 x => new SelectListItem() { Text = x.Nome, Value = x.Id.ToString() }).ToList();
             return View(tarefa);
         }
-
-        //[HttpGet]
-        //public ActionResult MensagensAssociada(string term)
-        //{
-        //    var mensagen = _context.Mensagens.Where(x => x.Assunto.Contains(term))
-        //        .Select(x => new { value = x.Assunto, id = x.Id }).ToList();
-        //    return Json(mensagen);
-        //}
-        [HttpGet]
-        public ActionResult FuncionariosPara(string matricula)
-        {
-               var func = _context.Funcionarios.Where(x => x.matricula.Contains(matricula))
-                .Select(x => new { value = x.matricula, id = x.FuncionarioId }).ToList();
-            return Json(func);
-        }
     }
 }
