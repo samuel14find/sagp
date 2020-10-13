@@ -32,10 +32,6 @@ namespace gestao.Data
         {
             if(!String.IsNullOrWhiteSpace(iso5))
             {
-                 //var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true";
-                 //var optionsBuilder = new DbContextOptionsBuilder<AppGestaoContext>();
-                 //optionsBuilder.UseSqlServer(connectionstring);
-                 //using (var _context = new AppGestaoContext(optionsBuilder.Options))
                 
                     IEnumerable<SelectListItem> progressoes = _context.Progressoes.AsNoTracking()
                     .OrderBy(n => n.NomeProgressao)
