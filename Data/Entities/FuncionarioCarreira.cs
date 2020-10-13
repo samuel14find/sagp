@@ -7,8 +7,7 @@ namespace gestao.Data.Entities
     public class FuncionarioCarreira
     {
         [Key]
-        [Column(Order = 1)]
-        public Guid IdentificadorFuncionarioCarreira {get; set;}
+        public int IdentificadorFuncionarioCarreira {get; set;}
         [Required]
         [MaxLength(128)]
         public string NomeFuncionario {get; set;}
