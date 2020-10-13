@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using gestao.Data.Entities;
 using gestao.ViewModels;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -15,6 +16,7 @@ namespace gestao.Data
         private readonly AppGestaoContext _context;
         private readonly IRepository _repo;
         private readonly ILogger<FuncionarioRepository> _logger;
+        static Random _random = new Random();
 
         public FuncionarioRepository(ICarreiraRepository carreiraRepo
                                     ,IProgressoesRepository progressaoRepo,
@@ -84,11 +86,12 @@ namespace gestao.Data
 
          public FuncionarioEditViewModel CreateFuncionarioCarreira()
          {
-            //  var carreiraRepo = new CarreiraRepository();
-            //  var progressaoRepo = new ProgressoesRepository();
+           
+            int idCarreira = _random.Next();
+            
               var funcionario = new FuncionarioEditViewModel()
              {
-                 IdentificadorFuncionarioCarreira = Guid.NewGuid().ToString(),
+                 IdentificadorFuncionarioCarreira = idCarreira,
                  Carreiras = _carreiraRepo.GetCarreira(),
                  Progressoes = _progressaoRepo.GetProgressoes()
              };
@@ -102,12 +105,12 @@ namespace gestao.Data
              var funcionarioSelecionato = _repo.GetFuncionarioPorNome(funcionarioedit.NomeFuncionario);
              if(funcionarioedit != null && funcionarioSelecionato != null)
              {      
-                         if(Guid.TryParse(funcionarioedit.IdentificadorFuncionarioCarreira, out Guid newGuid))
-                         {
+                         //if(Guid.TryParse(funcionarioedit.IdentificadorFuncionarioCarreira, out Guid newGuid))
+                         
 
                          var funcionarioCarreira = new FuncionarioCarreira()
                          {
-                             IdentificadorFuncionarioCarreira = newGuid,
+                             IdentificadorFuncionarioCarreira = funcionarioedit.IdentificadorFuncionarioCarreira,
                              NomeFuncionario = funcionarioedit.NomeFuncionario,
                              CarreiraIso5 = funcionarioedit.SelectedCarreiraIso5,
                              ProgressaoCode = funcionarioedit.SelectedProgressaoCode
@@ -118,7 +121,7 @@ namespace gestao.Data
                          _context.FuncionariosCarreira.Add(funcionarioCarreira);
                          _context.SaveChanges();
                          return true;
-                         }
+                         
                      
             }
             _logger.LogInformation($"A busca pelo {funcionarioedit.NomeFuncionario}, retornou vazio");
