@@ -4,36 +4,36 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>ProgressaoCarreira</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProgressaoCode" class="control-label"></label>
-                <input asp-for="ProgressaoCode" class="form-control" />
-                <span asp-validation-for="ProgressaoCode" class="text-danger"></span>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card col-md-6">
+            <div class="pd-15">
+                <h1 class="title">Progressão da Carreira</h1>
+                <hr />
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ProgressaoCode" class="control-label"> Código da Progressão</label>
+                        <input asp-for="ProgressaoCode" class="form-control" />
+                        <span asp-validation-for="ProgressaoCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NomeProgressao" class="control-label"> Nome da Progressão</label>
+                        <input asp-for="NomeProgressao" class="form-control" />
+                        <span asp-validation-for="NomeProgressao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Iso5" class="control-label"> Carreira Vinculada</label>
+                        <select asp-for="Iso5" class="form-control" asp-items="ViewBag.Iso5"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Criar" class="btn btn-primary" />
+                        <a class="btn btn-green btn-sm  mr-1" asp-action="Index">Voltar</a>
+                    </div>
+                </form>
+                
             </div>
-            <div class="form-group">
-                <label asp-for="NomeProgressao" class="control-label"></label>
-                <input asp-for="NomeProgressao" class="form-control" />
-                <span asp-validation-for="NomeProgressao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Iso5" class="control-label"></label>
-                <select asp-for="Iso5" class ="form-control" asp-items="ViewBag.Iso5"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>      
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
