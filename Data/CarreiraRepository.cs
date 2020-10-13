@@ -7,14 +7,16 @@ namespace gestao.Data
 {
     public class CarreiraRepository: ICarreiraRepository
     {
+        private readonly AppGestaoContext _context;
+
+        public CarreiraRepository(AppGestaoContext context)
+        {
+            _context = context;
+        }
         
         public IEnumerable<SelectListItem> GetCarreira()
         {
-            var connectionstring = "Server=localhost\\SQLEXPRESS;Database=gepteste8;Trusted_Connection=True; MultipleActiveResultSets=true";
-            var optionsBuilder = new DbContextOptionsBuilder<AppGestaoContext>();
-            optionsBuilder.UseSqlServer(connectionstring);
-            using (var _context = new AppGestaoContext(optionsBuilder.Options))
-            {
+            
            List<SelectListItem> carreiras = _context.Carreiras.AsNoTracking()
            .OrderBy(n => n.NomeCarreira)
            .Select(n => new SelectListItem{
@@ -28,7 +30,7 @@ namespace gestao.Data
            };
            carreiras.Insert(0, carreiraTip);
            return new SelectList(carreiras, "Value", "Text");
-            }
+            
             
         }
     }
