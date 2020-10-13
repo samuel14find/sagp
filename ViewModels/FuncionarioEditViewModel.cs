@@ -9,7 +9,7 @@ namespace gestao.ViewModels
     public class FuncionarioEditViewModel
     {
         [Display(Name="Identificador da Carreira do Funcionario")]
-        public string IdentificadorFuncionarioCarreira { get; set; }
+        public int IdentificadorFuncionarioCarreira { get; set; }
 
         [Required]
         [Display(Name="Nome do Funcionario")]
