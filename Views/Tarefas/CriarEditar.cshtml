@@ -8,9 +8,11 @@
         <div class="col-md-12">
             <div class="pd-15">
                 <h1 class="title">
-                    Create a New Task<br />
+                    Criar nova tarefa<br />
                 </h1>
-                <p class="subtitle">These are issues your team members should take care of - ASAP!</p>
+                <hr />
+                <p class="subtitle">Entre com uma tarefa e especifique para quem você vai atribuí-la. <strong>Lembre-se 
+                 que o funcionário deve ser capaz de executá-la com sucesso.</strong></p>
                 <form asp-controller="Tarefas" asp-action="CriarEditar">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row">
@@ -30,37 +32,19 @@
                             @Html.DropDownListFor(x => x.CategoriaId, (List<SelectListItem>)ViewBag.Categorias, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.CategoriaId)
                         </div>
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="DataLimite">Informe a data limite para fazer a tarefa</label>
-                            <input asp-for="DataLimite" class="form-control" />
+                        <div class="col-md-4 mb-4">
+                            <label asp-for="DataLimite">Informe a data limite para fazer a tarefa no <strong>formato dd/mm/yyyy hh:mm</strong></label>
+                            <input asp-for="DataLimite" type="datetime-local" class="form-control" />
                             <span asp-validation-for="DataLimite" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
                             <label asp-for="Funcionario">Quem vai executar tarefa</label>
-                            <input asp-for="Funcionario" type="datetime-local" class="form-control" />
-                            <span asp-validation-for="Funcionario" class="text-danger"></span>*
-                            @*@Html.LabelFor(x => x.Funcionario.matricula, "Funcionario")
-                            @Html.TextBoxFor(x => x.Funcionario.matricula, new { @class = "form-control", id = "func-associado" })
-                            @Html.ValidationMessageFor(x => x.FuncionarioId)*@
+                            <input asp-for="Funcionario"  class="form-control" />
+                            <span asp-validation-for="Funcionario" class="text-danger"></span>
                         </div>
-                        @*<div class="col-md-3 mb-3">
-                            @Html.HiddenFor(x => x.FuncionarioId, new { @class = "form-control", id = "fuc-id" })
-                        </div>*@
-                        <div class="col-md-3 mb-3">
-                            @*<label asp-for="MensagemAssociadaId">Mensagem Associada</label>
-            <input asp-for="MensagemAssociadaId" class="form-control" />
-            <span asp-validation-for="MensagemAssociadaId" class="text-danger"></span>*@
-
-                            @*@Html.LabelFor(x => x.MensagemAssociadaDisplay, "Associated Message")
-                            @Html.TextBoxFor(x => x.MensagemAssociadaDisplay, new { @class = "form-control", id = "msg-suggestion" })
-                            @Html.ValidationMessageFor(x => x.MensagemAssociadaId)*@
-
-                        </div>
-                        @*<div class="col-md-3 mb-3">
-                            @Html.HiddenFor(x => x.MensagemAssociadaId, new { @class = "form-control", id = "msg-id" })
-                        </div>*@
+                       
                         <div class="col-md-10 mb-10">
                             <label asp-for="Notas">Notas</label>
                             <textarea asp-for="Notas" class="form-control" cols="20" rows="5"></textarea>
@@ -79,67 +63,6 @@
         </div>
     </div>
 </div>
-@section Scripts{
-    <script type="text/javascript">
-
-        $(function () {
-            @*$('#msg-suggestion').autocomplete({
-                source: function (request, response) {
-
-                    $.ajax({
-                        url: '@Url.Action("MensagensAssociada", "Tarefas")',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: request,
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                console.log(item);
-                                return {
-                                    value: item.value,
-                                    id: item.id
-                                };
-                            }));
-                        }
-
-                })
-                },
-                select: function (event, ui) {
-
-                    $("#msg-id").val(ui.item.id);
-                }
-            });*@
-           
-            $('#func-associado').autocomplete({
-                
-                source: function (request, response) {
-
-                    $.ajax({
-                        url: '@Url.Action("FuncionariosPara", "Tarefas")',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: request,
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                console.log(item);
-                                return {
-                                    value: item.value,
-                                    id: item.id
-                                };
-                            }));
-                        }
-
-                })
-                },
-                select: function (event, ui) {
-
-                    $('#fuc-id').val(ui.item.id);
-                }
-                 });
-
-        });
-
-    </script>
-}
 
 
 
