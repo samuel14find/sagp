@@ -5,42 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="description" content="#" />
-    <meta name="keywords" content="#" />
-    <meta name="author" content="#" />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" href="#" type="image/*" />
+    <meta name="keywords" content="Gestão de Pessoas, PUC Minas, Desenvolvimento Full Stack" />
+    <meta name="author" content="Samuel S B Pereira" />
+    <link rel="icon" href="~/Images/favicon.png" type="image" />
     <link rel="canonical" href="#" />
 
     <!-- social media metatags -->
-    <meta property="og:title" content="#" />
-    <meta property="og:description" content="#" />
-    <meta property="og:locale" content="#" />
-    <meta property="og:url" content="#" />
-    <meta property="og:site_name" content="#" />
-    <meta property="og:type" content="#" />
-    <meta property="og:image" content="#" />
-    <meta property="og:image:type" content="image/*" />
-    <meta property="og:image:width" content="#" />
-    <meta property="og:image:height" content="#" />
+    <meta property="og:title" content="SAGP - Sistema de Apoio do Gestão de Pessoas do IFMG - Campus São João Evangelista" />
+    <meta property="og:description" content="Sistema desenvolvido como apresentação de trabalho de conclusão de curso de especialização da PUC - Minas" />
+    <meta property="og:locale" content="Guanhães" />
+    <meta property="og:url" content="sagpsje.azurewebsites.net" />
+    <meta property="og:site_name" content="sagpsje.azurewebsites.net" />
+    <meta property="og:type" content="Educação" />
 
-    <!-- metatags for twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="#" />
-    <meta name="twitter:site" content="" />
-    <meta name="twitter:title" content="#" />
-    <meta name="twitter:description" content="#" />
+
 
     <!-- CSS imports -->
-    <link rel="stylesheet" href="~/css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link href="~/css/Error.css" rel="stylesheet" />
 
-    <title>Dashboard Gestão</title>
+    <title>SAGP</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-        
+
         <div id="sidebar-wrapper">
-            <div class="sidebar-heading">Dashboard Gestão</div>
+            <div class="sidebar-heading">Dashboard - SAGP</div>
             <div class="list-group list-group-flush">
                 <a asp-area="" asp-controller="App" asp-action="Index" class="list-group-item list-group-item-action"><i class="fa fa-exchange" aria-hidden="true"></i>Sair</a>
                 <a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="list-group-item list-group-item-action menu-active"><i class="fa fa-Home" aria-hidden="true"></i>Home</a>
@@ -73,9 +64,9 @@
         </div>
     </div>
     <!-- javascrips imports -->
-    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/min/jquery.min.js"></script>
     <script src="~/js/min/popper.min.js"></script>
-    <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/min/bootstrap.min.js"></script>
     <script src="~/js/template-functions.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
