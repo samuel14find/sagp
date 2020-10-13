@@ -38,6 +38,9 @@ namespace gestao.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<FuncionarioCarreira>().Property(e => e.IdentificadorFuncionarioCarreira).ValueGeneratedNever();
+            
             modelBuilder.Entity<CategoriaTarefa>().HasData(new CategoriaTarefa {Id = 1, Nome = "Alta Prioridade", Descricao = "Categoria de tarefa que exige uma atenção alta" });
             modelBuilder.Entity<CategoriaTarefa>().HasData(new CategoriaTarefa { Id = 2, Nome = "Média Prioridade", Descricao = "Categoria de tarefa que exige uma atenção média" });
             modelBuilder.Entity<CategoriaTarefa>().HasData(new CategoriaTarefa { Id = 3, Nome = "Baixa Prioridade", Descricao = "Categoria de tarefa que exige uma atenção baixa" });
