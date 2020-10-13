@@ -126,7 +126,7 @@ namespace gestao
             }
             app.UseStaticFiles();
             app.UseSession();
-            app.UseNodeModules();
+            //app.UseNodeModules();
             app.UseRouting();
             app.UseAuthentication(); 
             app.UseAuthorization();
@@ -152,7 +152,7 @@ namespace gestao
 
                
             });
-            //CreateRoles(serviceProvider).Wait();
+            CreateRoles(serviceProvider).Wait();
         }
 
         private async Task CreateRoles(IServiceProvider serviceProvider)
