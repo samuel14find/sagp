@@ -17,12 +17,8 @@ login. Isso tudo é gerenciado pelo SignInManager.IsSigned -->
     <a id="navbarDropdown" class="nav-link text-light dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-user-circle" aria-hidden="true"></i>Olá @nome!</a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        @* <a class="dropdown-item" href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a> *@
-        @* <div class="dropdown-divider"></div>
-            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", new { area = "" })" ><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a> *@
         <div class="dropdown-item">
-            <form id="logoutForm" class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", new { area = "" })">
-                @* <button id="logout" type="submit" class="nav-link text-light"></button> *@
+            <form id="logoutForm" class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "App", new { area = "" })">
                 <button class="btn btn-red btn-sm" type="submit"><i class="fa fa-arrow-circle-o-right"></i> Sair</button>
             </form>
         </div>
@@ -31,9 +27,7 @@ login. Isso tudo é gerenciado pelo SignInManager.IsSigned -->
     </div>
 }
 else
-{
-    @* <a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-        <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a> *@
+{ 
     <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Manage">
         <i class="fa fa-user-circle" aria-hidden="true"></i>Olá Usuário
     </a>
